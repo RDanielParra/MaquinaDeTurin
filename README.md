@@ -4,7 +4,7 @@ Este proyecto es un simulador funcional de una **Máquina de Turing**, desarroll
 
 ## 📋 Información del Proyecto
 * **Materia:** Lenguajes y Autómatas I
-* **Institución:** Insituto Tecnologico Nacional de Mexico Campus Nuevo Laredo
+* **Institución:** Instituto Tecnologico Nacional de Mexico Campus Nuevo Laredo
 * **Tecnología:** C# con Windows Forms (.NET)
 
 ## 🚀 Características
@@ -15,4 +15,7 @@ Este proyecto es un simulador funcional de una **Máquina de Turing**, desarroll
 ## 🛠️ Instalación y Uso
 1. Clona el repositorio:
    ```bash
-   git clone [https://github.com/tu-usuario/MaquinaDeTurin.git](https://github.com/tu-usuario/MaquinaDeTurin.git)
+   git clone [https://github.com/RDanielParra/MaquinaDeTurin.git](https://github.com/RDanielParra/MaquinaDeTurin.git)
+2. Abre el archivo ```.sln``` en Visual Studio.
+
+3. Compila y ejecuta el proyecto (Presiona F5).

@@ -12,8 +12,6 @@ Este proyecto es un simulador funcional de una **Máquina de Turing**, desarroll
 * **Tabla de Transiciones:** Interfaz para definir estados, movimientos (L/R) y cambios de símbolo.
 * **Ejecución Paso a Paso:** Control total sobre la velocidad de procesamiento para analizar el flujo del autómata.
 
-## 👥 Equipo de Desarrollo
-
 ## 🛠️ Instalación y Uso
 1. Clona el repositorio:
    ```bash

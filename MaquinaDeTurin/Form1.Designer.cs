@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             gbxDatosMT = new GroupBox();
             button2 = new Button();
             cbxPosicionIni = new ComboBox();
             lblPosIni = new Label();
-            button1 = new Button();
+            btnCapturarCadena = new Button();
             label1 = new Label();
             btnAlfabeto = new Button();
             txtCadena = new TextBox();
@@ -91,6 +92,7 @@
             button5 = new Button();
             txtMovimientos = new TextBox();
             label6 = new Label();
+            tpCadena = new ToolTip(components);
             gbxDatosMT.SuspendLayout();
             gbxOperaciones.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -102,104 +104,124 @@
             gbxDatosMT.Controls.Add(button2);
             gbxDatosMT.Controls.Add(cbxPosicionIni);
             gbxDatosMT.Controls.Add(lblPosIni);
-            gbxDatosMT.Controls.Add(button1);
+            gbxDatosMT.Controls.Add(btnCapturarCadena);
             gbxDatosMT.Controls.Add(label1);
             gbxDatosMT.Controls.Add(btnAlfabeto);
             gbxDatosMT.Controls.Add(txtCadena);
             gbxDatosMT.Controls.Add(lblCadena);
             gbxDatosMT.Controls.Add(lblAlfabeto);
             gbxDatosMT.Controls.Add(txtAlfabeto);
-            gbxDatosMT.Location = new Point(13, 12);
+            gbxDatosMT.Location = new Point(9, 7);
+            gbxDatosMT.Margin = new Padding(2);
             gbxDatosMT.Name = "gbxDatosMT";
-            gbxDatosMT.Size = new Size(428, 302);
+            gbxDatosMT.Padding = new Padding(2);
+            gbxDatosMT.Size = new Size(300, 181);
             gbxDatosMT.TabIndex = 0;
             gbxDatosMT.TabStop = false;
             gbxDatosMT.Text = "Máquina de Turing";
             // 
             // button2
             // 
-            button2.Location = new Point(6, 243);
+            button2.Location = new Point(4, 146);
+            button2.Margin = new Padding(2);
             button2.Name = "button2";
-            button2.Size = new Size(411, 40);
+            button2.Size = new Size(288, 24);
             button2.TabIndex = 9;
             button2.Text = "Encender Máquina de Turing";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // cbxPosicionIni
             // 
             cbxPosicionIni.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxPosicionIni.FormattingEnabled = true;
-            cbxPosicionIni.Location = new Point(212, 201);
+            cbxPosicionIni.Location = new Point(148, 121);
+            cbxPosicionIni.Margin = new Padding(2);
             cbxPosicionIni.Name = "cbxPosicionIni";
-            cbxPosicionIni.Size = new Size(65, 33);
+            cbxPosicionIni.Size = new Size(47, 23);
             cbxPosicionIni.TabIndex = 8;
             // 
             // lblPosIni
             // 
             lblPosIni.AutoSize = true;
-            lblPosIni.Location = new Point(6, 204);
+            lblPosIni.Location = new Point(4, 122);
+            lblPosIni.Margin = new Padding(2, 0, 2, 0);
             lblPosIni.Name = "lblPosIni";
-            lblPosIni.Size = new Size(200, 25);
+            lblPosIni.Size = new Size(136, 15);
             lblPosIni.TabIndex = 7;
             lblPosIni.Text = "Posición de celda inicial:";
             // 
-            // button1
+            // btnCapturarCadena
             // 
-            button1.Location = new Point(96, 142);
-            button1.Name = "button1";
-            button1.Size = new Size(255, 34);
-            button1.TabIndex = 6;
-            button1.Text = "Capturar Cadena";
-            button1.UseVisualStyleBackColor = true;
+            btnCapturarCadena.Enabled = false;
+            btnCapturarCadena.Location = new Point(67, 85);
+            btnCapturarCadena.Margin = new Padding(2);
+            btnCapturarCadena.Name = "btnCapturarCadena";
+            btnCapturarCadena.Size = new Size(178, 20);
+            btnCapturarCadena.TabIndex = 6;
+            btnCapturarCadena.Text = "Capturar Cadena";
+            btnCapturarCadena.UseVisualStyleBackColor = true;
+            btnCapturarCadena.Click += btnCapturarCadena_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(252, 111);
+            label1.Location = new Point(176, 67);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(99, 25);
+            label1.Size = new Size(88, 15);
             label1.TabIndex = 5;
-            label1.Text = "^ = blanco";
+            label1.Text = "Space = blanco";
             // 
             // btnAlfabeto
             // 
-            btnAlfabeto.Location = new Point(252, 48);
+            btnAlfabeto.Location = new Point(176, 29);
+            btnAlfabeto.Margin = new Padding(2);
             btnAlfabeto.Name = "btnAlfabeto";
-            btnAlfabeto.Size = new Size(165, 40);
+            btnAlfabeto.Size = new Size(116, 24);
             btnAlfabeto.TabIndex = 4;
             btnAlfabeto.Text = "Capturar Alfabeto";
             btnAlfabeto.UseVisualStyleBackColor = true;
+            btnAlfabeto.Click += btnAlfabeto_Click;
             // 
             // txtCadena
             // 
-            txtCadena.Location = new Point(96, 105);
+            txtCadena.Enabled = false;
+            txtCadena.Location = new Point(67, 63);
+            txtCadena.Margin = new Padding(2);
             txtCadena.Name = "txtCadena";
-            txtCadena.Size = new Size(150, 31);
+            txtCadena.Size = new Size(106, 23);
             txtCadena.TabIndex = 3;
+            txtCadena.TextChanged += txtCadena_TextChanged;
+            txtCadena.KeyDown += txtCadena_KeyDown;
+            txtCadena.KeyPress += txtCadena_KeyPress;
             // 
             // lblCadena
             // 
             lblCadena.AutoSize = true;
-            lblCadena.Location = new Point(6, 111);
+            lblCadena.Location = new Point(4, 67);
+            lblCadena.Margin = new Padding(2, 0, 2, 0);
             lblCadena.Name = "lblCadena";
-            lblCadena.Size = new Size(75, 25);
+            lblCadena.Size = new Size(50, 15);
             lblCadena.TabIndex = 2;
             lblCadena.Text = "Cadena:";
             // 
             // lblAlfabeto
             // 
             lblAlfabeto.AutoSize = true;
-            lblAlfabeto.Location = new Point(6, 52);
+            lblAlfabeto.Location = new Point(4, 31);
+            lblAlfabeto.Margin = new Padding(2, 0, 2, 0);
             lblAlfabeto.Name = "lblAlfabeto";
-            lblAlfabeto.Size = new Size(84, 25);
+            lblAlfabeto.Size = new Size(55, 15);
             lblAlfabeto.TabIndex = 1;
             lblAlfabeto.Text = "Alfabeto:";
             // 
             // txtAlfabeto
             // 
-            txtAlfabeto.Location = new Point(96, 53);
+            txtAlfabeto.Location = new Point(67, 32);
+            txtAlfabeto.Margin = new Padding(2);
             txtAlfabeto.Name = "txtAlfabeto";
-            txtAlfabeto.Size = new Size(150, 31);
+            txtAlfabeto.Size = new Size(106, 23);
             txtAlfabeto.TabIndex = 0;
             // 
             // gbxOperaciones
@@ -237,72 +259,81 @@
             gbxOperaciones.Controls.Add(btnBuscarIgualIzq);
             gbxOperaciones.Controls.Add(cbxBuscarSIgual);
             gbxOperaciones.Controls.Add(lblBuscarSIgual);
-            gbxOperaciones.Location = new Point(447, 12);
+            gbxOperaciones.Location = new Point(313, 7);
+            gbxOperaciones.Margin = new Padding(2);
             gbxOperaciones.Name = "gbxOperaciones";
-            gbxOperaciones.Size = new Size(1033, 302);
+            gbxOperaciones.Padding = new Padding(2);
+            gbxOperaciones.Size = new Size(723, 181);
             gbxOperaciones.TabIndex = 1;
             gbxOperaciones.TabStop = false;
             gbxOperaciones.Text = "Operaciones";
             // 
             // btnBorrarCadDer
             // 
-            btnBorrarCadDer.Location = new Point(879, 237);
+            btnBorrarCadDer.Location = new Point(615, 142);
+            btnBorrarCadDer.Margin = new Padding(2);
             btnBorrarCadDer.Name = "btnBorrarCadDer";
-            btnBorrarCadDer.Size = new Size(148, 59);
+            btnBorrarCadDer.Size = new Size(104, 35);
             btnBorrarCadDer.TabIndex = 32;
             btnBorrarCadDer.Text = "Borrar la cadena hacia la der";
             btnBorrarCadDer.UseVisualStyleBackColor = true;
             // 
             // btnBorrarCadIzq
             // 
-            btnBorrarCadIzq.Location = new Point(729, 237);
+            btnBorrarCadIzq.Location = new Point(510, 142);
+            btnBorrarCadIzq.Margin = new Padding(2);
             btnBorrarCadIzq.Name = "btnBorrarCadIzq";
-            btnBorrarCadIzq.Size = new Size(148, 59);
+            btnBorrarCadIzq.Size = new Size(104, 35);
             btnBorrarCadIzq.TabIndex = 31;
             btnBorrarCadIzq.Text = "Borrar la cadena hacia la izq";
             btnBorrarCadIzq.UseVisualStyleBackColor = true;
             // 
             // btnBorrarCadena
             // 
-            btnBorrarCadena.Location = new Point(729, 192);
+            btnBorrarCadena.Location = new Point(510, 115);
+            btnBorrarCadena.Margin = new Padding(2);
             btnBorrarCadena.Name = "btnBorrarCadena";
-            btnBorrarCadena.Size = new Size(298, 37);
+            btnBorrarCadena.Size = new Size(209, 22);
             btnBorrarCadena.TabIndex = 30;
             btnBorrarCadena.Text = "Borrar la cadena";
             btnBorrarCadena.UseVisualStyleBackColor = true;
             // 
             // btnSobrescribir
             // 
-            btnSobrescribir.Location = new Point(886, 150);
+            btnSobrescribir.Location = new Point(620, 90);
+            btnSobrescribir.Margin = new Padding(2);
             btnSobrescribir.Name = "btnSobrescribir";
-            btnSobrescribir.Size = new Size(141, 34);
+            btnSobrescribir.Size = new Size(99, 20);
             btnSobrescribir.TabIndex = 29;
             btnSobrescribir.Text = "Sobrescribir";
             btnSobrescribir.UseVisualStyleBackColor = true;
             // 
             // btnGuardarS
             // 
-            btnGuardarS.Location = new Point(729, 150);
+            btnGuardarS.Location = new Point(510, 90);
+            btnGuardarS.Margin = new Padding(2);
             btnGuardarS.Name = "btnGuardarS";
-            btnGuardarS.Size = new Size(148, 34);
+            btnGuardarS.Size = new Size(104, 20);
             btnGuardarS.TabIndex = 28;
             btnGuardarS.Text = "Guardar Simb.";
             btnGuardarS.UseVisualStyleBackColor = true;
             // 
             // btnEscribirSDer
             // 
-            btnEscribirSDer.Location = new Point(845, 94);
+            btnEscribirSDer.Location = new Point(592, 56);
+            btnEscribirSDer.Margin = new Padding(2);
             btnEscribirSDer.Name = "btnEscribirSDer";
-            btnEscribirSDer.Size = new Size(82, 42);
+            btnEscribirSDer.Size = new Size(57, 25);
             btnEscribirSDer.TabIndex = 27;
             btnEscribirSDer.Text = "Der ->";
             btnEscribirSDer.UseVisualStyleBackColor = true;
             // 
             // btnEscribirSIzq
             // 
-            btnEscribirSIzq.Location = new Point(751, 94);
+            btnEscribirSIzq.Location = new Point(526, 56);
+            btnEscribirSIzq.Margin = new Padding(2);
             btnEscribirSIzq.Name = "btnEscribirSIzq";
-            btnEscribirSIzq.Size = new Size(82, 42);
+            btnEscribirSIzq.Size = new Size(57, 25);
             btnEscribirSIzq.TabIndex = 26;
             btnEscribirSIzq.Text = "<- Izq";
             btnEscribirSIzq.UseVisualStyleBackColor = true;
@@ -311,34 +342,38 @@
             // 
             cbxEscribirSimb.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxEscribirSimb.FormattingEnabled = true;
-            cbxEscribirSimb.Location = new Point(766, 55);
+            cbxEscribirSimb.Location = new Point(536, 33);
+            cbxEscribirSimb.Margin = new Padding(2);
             cbxEscribirSimb.Name = "cbxEscribirSimb";
-            cbxEscribirSimb.Size = new Size(142, 33);
+            cbxEscribirSimb.Size = new Size(101, 23);
             cbxEscribirSimb.TabIndex = 25;
             // 
             // lblEscribirSimb
             // 
             lblEscribirSimb.AutoSize = true;
-            lblEscribirSimb.Location = new Point(753, 27);
+            lblEscribirSimb.Location = new Point(527, 16);
+            lblEscribirSimb.Margin = new Padding(2, 0, 2, 0);
             lblEscribirSimb.Name = "lblEscribirSimb";
-            lblEscribirSimb.Size = new Size(259, 25);
+            lblEscribirSimb.Size = new Size(173, 15);
             lblEscribirSimb.TabIndex = 24;
             lblEscribirSimb.Text = "Escribir símbolo en celda actual";
             // 
             // btnEliminarHastaDer
             // 
-            btnEliminarHastaDer.Location = new Point(610, 222);
+            btnEliminarHastaDer.Location = new Point(427, 133);
+            btnEliminarHastaDer.Margin = new Padding(2);
             btnEliminarHastaDer.Name = "btnEliminarHastaDer";
-            btnEliminarHastaDer.Size = new Size(82, 47);
+            btnEliminarHastaDer.Size = new Size(57, 28);
             btnEliminarHastaDer.TabIndex = 23;
             btnEliminarHastaDer.Text = "Der ->";
             btnEliminarHastaDer.UseVisualStyleBackColor = true;
             // 
             // btnEliminarHastaIzq
             // 
-            btnEliminarHastaIzq.Location = new Point(516, 222);
+            btnEliminarHastaIzq.Location = new Point(361, 133);
+            btnEliminarHastaIzq.Margin = new Padding(2);
             btnEliminarHastaIzq.Name = "btnEliminarHastaIzq";
-            btnEliminarHastaIzq.Size = new Size(82, 47);
+            btnEliminarHastaIzq.Size = new Size(57, 28);
             btnEliminarHastaIzq.TabIndex = 22;
             btnEliminarHastaIzq.Text = "<- Izq";
             btnEliminarHastaIzq.UseVisualStyleBackColor = true;
@@ -347,34 +382,38 @@
             // 
             cbxEliminarHasta.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxEliminarHasta.FormattingEnabled = true;
-            cbxEliminarHasta.Location = new Point(531, 183);
+            cbxEliminarHasta.Location = new Point(372, 110);
+            cbxEliminarHasta.Margin = new Padding(2);
             cbxEliminarHasta.Name = "cbxEliminarHasta";
-            cbxEliminarHasta.Size = new Size(142, 33);
+            cbxEliminarHasta.Size = new Size(101, 23);
             cbxEliminarHasta.TabIndex = 21;
             // 
             // lblEliminarSHasta
             // 
             lblEliminarSHasta.AutoSize = true;
-            lblEliminarSHasta.Location = new Point(516, 155);
+            lblEliminarSHasta.Location = new Point(361, 93);
+            lblEliminarSHasta.Margin = new Padding(2, 0, 2, 0);
             lblEliminarSHasta.Name = "lblEliminarSHasta";
-            lblEliminarSHasta.Size = new Size(199, 25);
+            lblEliminarSHasta.Size = new Size(132, 15);
             lblEliminarSHasta.TabIndex = 20;
             lblEliminarSHasta.Text = "Eliminar símbolos hasta";
             // 
             // btnEliminar1SIgualDer
             // 
-            btnEliminar1SIgualDer.Location = new Point(610, 94);
+            btnEliminar1SIgualDer.Location = new Point(427, 56);
+            btnEliminar1SIgualDer.Margin = new Padding(2);
             btnEliminar1SIgualDer.Name = "btnEliminar1SIgualDer";
-            btnEliminar1SIgualDer.Size = new Size(82, 47);
+            btnEliminar1SIgualDer.Size = new Size(57, 28);
             btnEliminar1SIgualDer.TabIndex = 19;
             btnEliminar1SIgualDer.Text = "Der ->";
             btnEliminar1SIgualDer.UseVisualStyleBackColor = true;
             // 
             // btnEliminar1SIgualIzq
             // 
-            btnEliminar1SIgualIzq.Location = new Point(516, 94);
+            btnEliminar1SIgualIzq.Location = new Point(361, 56);
+            btnEliminar1SIgualIzq.Margin = new Padding(2);
             btnEliminar1SIgualIzq.Name = "btnEliminar1SIgualIzq";
-            btnEliminar1SIgualIzq.Size = new Size(82, 47);
+            btnEliminar1SIgualIzq.Size = new Size(57, 28);
             btnEliminar1SIgualIzq.TabIndex = 18;
             btnEliminar1SIgualIzq.Text = "<- Izq";
             btnEliminar1SIgualIzq.UseVisualStyleBackColor = true;
@@ -383,34 +422,38 @@
             // 
             cbxEliminar1SIgual.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxEliminar1SIgual.FormattingEnabled = true;
-            cbxEliminar1SIgual.Location = new Point(531, 55);
+            cbxEliminar1SIgual.Location = new Point(372, 33);
+            cbxEliminar1SIgual.Margin = new Padding(2);
             cbxEliminar1SIgual.Name = "cbxEliminar1SIgual";
-            cbxEliminar1SIgual.Size = new Size(142, 33);
+            cbxEliminar1SIgual.Size = new Size(101, 23);
             cbxEliminar1SIgual.TabIndex = 17;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(516, 27);
+            label3.Location = new Point(361, 16);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(212, 25);
+            label3.Size = new Size(142, 15);
             label3.TabIndex = 16;
             label3.Text = "Eliminar símbolo igual (1)";
             // 
             // btnEliminarDifDer
             // 
-            btnEliminarDifDer.Location = new Point(352, 222);
+            btnEliminarDifDer.Location = new Point(246, 133);
+            btnEliminarDifDer.Margin = new Padding(2);
             btnEliminarDifDer.Name = "btnEliminarDifDer";
-            btnEliminarDifDer.Size = new Size(82, 47);
+            btnEliminarDifDer.Size = new Size(57, 28);
             btnEliminarDifDer.TabIndex = 15;
             btnEliminarDifDer.Text = "Der ->";
             btnEliminarDifDer.UseVisualStyleBackColor = true;
             // 
             // btnEliminarDifIzq
             // 
-            btnEliminarDifIzq.Location = new Point(258, 222);
+            btnEliminarDifIzq.Location = new Point(181, 133);
+            btnEliminarDifIzq.Margin = new Padding(2);
             btnEliminarDifIzq.Name = "btnEliminarDifIzq";
-            btnEliminarDifIzq.Size = new Size(82, 47);
+            btnEliminarDifIzq.Size = new Size(57, 28);
             btnEliminarDifIzq.TabIndex = 14;
             btnEliminarDifIzq.Text = "<- Izq";
             btnEliminarDifIzq.UseVisualStyleBackColor = true;
@@ -419,34 +462,38 @@
             // 
             cbxEliminarSDif.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxEliminarSDif.FormattingEnabled = true;
-            cbxEliminarSDif.Location = new Point(273, 183);
+            cbxEliminarSDif.Location = new Point(191, 110);
+            cbxEliminarSDif.Margin = new Padding(2);
             cbxEliminarSDif.Name = "cbxEliminarSDif";
-            cbxEliminarSDif.Size = new Size(142, 33);
+            cbxEliminarSDif.Size = new Size(101, 23);
             cbxEliminarSDif.TabIndex = 13;
             // 
             // lblEliminarSDif
             // 
             lblEliminarSDif.AutoSize = true;
-            lblEliminarSDif.Location = new Point(258, 155);
+            lblEliminarSDif.Location = new Point(181, 93);
+            lblEliminarSDif.Margin = new Padding(2, 0, 2, 0);
             lblEliminarSDif.Name = "lblEliminarSDif";
-            lblEliminarSDif.Size = new Size(227, 25);
+            lblEliminarSDif.Size = new Size(151, 15);
             lblEliminarSDif.TabIndex = 12;
             lblEliminarSDif.Text = "Eliminar símbolos diferente";
             // 
             // btnEliminarIgualDer
             // 
-            btnEliminarIgualDer.Location = new Point(352, 94);
+            btnEliminarIgualDer.Location = new Point(246, 56);
+            btnEliminarIgualDer.Margin = new Padding(2);
             btnEliminarIgualDer.Name = "btnEliminarIgualDer";
-            btnEliminarIgualDer.Size = new Size(82, 47);
+            btnEliminarIgualDer.Size = new Size(57, 28);
             btnEliminarIgualDer.TabIndex = 11;
             btnEliminarIgualDer.Text = "Der ->";
             btnEliminarIgualDer.UseVisualStyleBackColor = true;
             // 
             // btnEliminarIgualIzq
             // 
-            btnEliminarIgualIzq.Location = new Point(258, 94);
+            btnEliminarIgualIzq.Location = new Point(181, 56);
+            btnEliminarIgualIzq.Margin = new Padding(2);
             btnEliminarIgualIzq.Name = "btnEliminarIgualIzq";
-            btnEliminarIgualIzq.Size = new Size(82, 47);
+            btnEliminarIgualIzq.Size = new Size(57, 28);
             btnEliminarIgualIzq.TabIndex = 10;
             btnEliminarIgualIzq.Text = "<- Izq";
             btnEliminarIgualIzq.UseVisualStyleBackColor = true;
@@ -455,34 +502,38 @@
             // 
             cbxEliminarSIgual.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxEliminarSIgual.FormattingEnabled = true;
-            cbxEliminarSIgual.Location = new Point(273, 55);
+            cbxEliminarSIgual.Location = new Point(191, 33);
+            cbxEliminarSIgual.Margin = new Padding(2);
             cbxEliminarSIgual.Name = "cbxEliminarSIgual";
-            cbxEliminarSIgual.Size = new Size(142, 33);
+            cbxEliminarSIgual.Size = new Size(101, 23);
             cbxEliminarSIgual.TabIndex = 9;
             // 
             // lblEliminarSIgual
             // 
             lblEliminarSIgual.AutoSize = true;
-            lblEliminarSIgual.Location = new Point(258, 27);
+            lblEliminarSIgual.Location = new Point(181, 16);
+            lblEliminarSIgual.Margin = new Padding(2, 0, 2, 0);
             lblEliminarSIgual.Name = "lblEliminarSIgual";
-            lblEliminarSIgual.Size = new Size(195, 25);
+            lblEliminarSIgual.Size = new Size(130, 15);
             lblEliminarSIgual.TabIndex = 8;
             lblEliminarSIgual.Text = "Eliminar símbolos igual";
             // 
             // btnBuscarDifDer
             // 
-            btnBuscarDifDer.Location = new Point(100, 222);
+            btnBuscarDifDer.Location = new Point(70, 133);
+            btnBuscarDifDer.Margin = new Padding(2);
             btnBuscarDifDer.Name = "btnBuscarDifDer";
-            btnBuscarDifDer.Size = new Size(82, 47);
+            btnBuscarDifDer.Size = new Size(57, 28);
             btnBuscarDifDer.TabIndex = 7;
             btnBuscarDifDer.Text = "Der ->";
             btnBuscarDifDer.UseVisualStyleBackColor = true;
             // 
             // btnBuscarDifIzq
             // 
-            btnBuscarDifIzq.Location = new Point(6, 222);
+            btnBuscarDifIzq.Location = new Point(4, 133);
+            btnBuscarDifIzq.Margin = new Padding(2);
             btnBuscarDifIzq.Name = "btnBuscarDifIzq";
-            btnBuscarDifIzq.Size = new Size(82, 47);
+            btnBuscarDifIzq.Size = new Size(57, 28);
             btnBuscarDifIzq.TabIndex = 6;
             btnBuscarDifIzq.Text = "<- Izq";
             btnBuscarDifIzq.UseVisualStyleBackColor = true;
@@ -491,34 +542,38 @@
             // 
             cbxBuscarSDif.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxBuscarSDif.FormattingEnabled = true;
-            cbxBuscarSDif.Location = new Point(21, 183);
+            cbxBuscarSDif.Location = new Point(15, 110);
+            cbxBuscarSDif.Margin = new Padding(2);
             cbxBuscarSDif.Name = "cbxBuscarSDif";
-            cbxBuscarSDif.Size = new Size(142, 33);
+            cbxBuscarSDif.Size = new Size(101, 23);
             cbxBuscarSDif.TabIndex = 5;
             // 
             // lblBuscarSDif
             // 
             lblBuscarSDif.AutoSize = true;
-            lblBuscarSDif.Location = new Point(6, 155);
+            lblBuscarSDif.Location = new Point(4, 93);
+            lblBuscarSDif.Margin = new Padding(2, 0, 2, 0);
             lblBuscarSDif.Name = "lblBuscarSDif";
-            lblBuscarSDif.Size = new Size(208, 25);
+            lblBuscarSDif.Size = new Size(138, 15);
             lblBuscarSDif.TabIndex = 4;
             lblBuscarSDif.Text = "Buscar símbolo diferente";
             // 
             // btnBuscarIgualDer
             // 
-            btnBuscarIgualDer.Location = new Point(100, 94);
+            btnBuscarIgualDer.Location = new Point(70, 56);
+            btnBuscarIgualDer.Margin = new Padding(2);
             btnBuscarIgualDer.Name = "btnBuscarIgualDer";
-            btnBuscarIgualDer.Size = new Size(82, 47);
+            btnBuscarIgualDer.Size = new Size(57, 28);
             btnBuscarIgualDer.TabIndex = 3;
             btnBuscarIgualDer.Text = "Der ->";
             btnBuscarIgualDer.UseVisualStyleBackColor = true;
             // 
             // btnBuscarIgualIzq
             // 
-            btnBuscarIgualIzq.Location = new Point(6, 94);
+            btnBuscarIgualIzq.Location = new Point(4, 56);
+            btnBuscarIgualIzq.Margin = new Padding(2);
             btnBuscarIgualIzq.Name = "btnBuscarIgualIzq";
-            btnBuscarIgualIzq.Size = new Size(82, 47);
+            btnBuscarIgualIzq.Size = new Size(57, 28);
             btnBuscarIgualIzq.TabIndex = 2;
             btnBuscarIgualIzq.Text = "<- Izq";
             btnBuscarIgualIzq.UseVisualStyleBackColor = true;
@@ -527,17 +582,19 @@
             // 
             cbxBuscarSIgual.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxBuscarSIgual.FormattingEnabled = true;
-            cbxBuscarSIgual.Location = new Point(21, 55);
+            cbxBuscarSIgual.Location = new Point(15, 33);
+            cbxBuscarSIgual.Margin = new Padding(2);
             cbxBuscarSIgual.Name = "cbxBuscarSIgual";
-            cbxBuscarSIgual.Size = new Size(142, 33);
+            cbxBuscarSIgual.Size = new Size(101, 23);
             cbxBuscarSIgual.TabIndex = 1;
             // 
             // lblBuscarSIgual
             // 
             lblBuscarSIgual.AutoSize = true;
-            lblBuscarSIgual.Location = new Point(6, 27);
+            lblBuscarSIgual.Location = new Point(4, 16);
+            lblBuscarSIgual.Margin = new Padding(2, 0, 2, 0);
             lblBuscarSIgual.Name = "lblBuscarSIgual";
-            lblBuscarSIgual.Size = new Size(176, 25);
+            lblBuscarSIgual.Size = new Size(117, 15);
             lblBuscarSIgual.TabIndex = 0;
             lblBuscarSIgual.Text = "Buscar símbolo igual";
             // 
@@ -552,18 +609,21 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(button3);
             groupBox1.Controls.Add(btnCopiarCad);
-            groupBox1.Location = new Point(13, 331);
+            groupBox1.Location = new Point(9, 199);
+            groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(428, 359);
+            groupBox1.Padding = new Padding(2);
+            groupBox1.Size = new Size(300, 215);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Operaciones con Cadena";
             // 
             // btnBuscarCadena
             // 
-            btnBuscarCadena.Location = new Point(6, 283);
+            btnBuscarCadena.Location = new Point(4, 170);
+            btnBuscarCadena.Margin = new Padding(2);
             btnBuscarCadena.Name = "btnBuscarCadena";
-            btnBuscarCadena.Size = new Size(411, 34);
+            btnBuscarCadena.Size = new Size(288, 20);
             btnBuscarCadena.TabIndex = 8;
             btnBuscarCadena.Text = "Buscar cadena";
             btnBuscarCadena.UseVisualStyleBackColor = true;
@@ -571,9 +631,10 @@
             // radBuscarRevesCadDer
             // 
             radBuscarRevesCadDer.AutoSize = true;
-            radBuscarRevesCadDer.Location = new Point(221, 220);
+            radBuscarRevesCadDer.Location = new Point(155, 132);
+            radBuscarRevesCadDer.Margin = new Padding(2);
             radBuscarRevesCadDer.Name = "radBuscarRevesCadDer";
-            radBuscarRevesCadDer.Size = new Size(187, 29);
+            radBuscarRevesCadDer.Size = new Size(125, 19);
             radBuscarRevesCadDer.TabIndex = 7;
             radBuscarRevesCadDer.TabStop = true;
             radBuscarRevesCadDer.Text = "Buscar al revés der.";
@@ -582,9 +643,10 @@
             // radBuscarRevesCadIzq
             // 
             radBuscarRevesCadIzq.AutoSize = true;
-            radBuscarRevesCadIzq.Location = new Point(6, 220);
+            radBuscarRevesCadIzq.Location = new Point(4, 132);
+            radBuscarRevesCadIzq.Margin = new Padding(2);
             radBuscarRevesCadIzq.Name = "radBuscarRevesCadIzq";
-            radBuscarRevesCadIzq.Size = new Size(184, 29);
+            radBuscarRevesCadIzq.Size = new Size(123, 19);
             radBuscarRevesCadIzq.TabIndex = 6;
             radBuscarRevesCadIzq.TabStop = true;
             radBuscarRevesCadIzq.Text = "Buscar al revés izq.";
@@ -593,9 +655,10 @@
             // radBuscarCadDer
             // 
             radBuscarCadDer.AutoSize = true;
-            radBuscarCadDer.Location = new Point(221, 171);
+            radBuscarCadDer.Location = new Point(155, 103);
+            radBuscarCadDer.Margin = new Padding(2);
             radBuscarCadDer.Name = "radBuscarCadDer";
-            radBuscarCadDer.Size = new Size(155, 29);
+            radBuscarCadDer.Size = new Size(104, 19);
             radBuscarCadDer.TabIndex = 5;
             radBuscarCadDer.TabStop = true;
             radBuscarCadDer.Text = "Buscar a la der.";
@@ -604,9 +667,10 @@
             // radBuscarCadIzq
             // 
             radBuscarCadIzq.AutoSize = true;
-            radBuscarCadIzq.Location = new Point(6, 171);
+            radBuscarCadIzq.Location = new Point(4, 103);
+            radBuscarCadIzq.Margin = new Padding(2);
             radBuscarCadIzq.Name = "radBuscarCadIzq";
-            radBuscarCadIzq.Size = new Size(152, 29);
+            radBuscarCadIzq.Size = new Size(102, 19);
             radBuscarCadIzq.TabIndex = 4;
             radBuscarCadIzq.TabStop = true;
             radBuscarCadIzq.Text = "Buscar a la izq.";
@@ -614,34 +678,38 @@
             // 
             // txtBuscarCadena
             // 
-            txtBuscarCadena.Location = new Point(148, 114);
+            txtBuscarCadena.Location = new Point(104, 68);
+            txtBuscarCadena.Margin = new Padding(2);
             txtBuscarCadena.Name = "txtBuscarCadena";
-            txtBuscarCadena.Size = new Size(269, 31);
+            txtBuscarCadena.Size = new Size(190, 23);
             txtBuscarCadena.TabIndex = 3;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(6, 114);
+            label2.Location = new Point(4, 68);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(124, 25);
+            label2.Size = new Size(83, 15);
             label2.TabIndex = 2;
             label2.Text = "Buscar cadena";
             // 
             // button3
             // 
-            button3.Location = new Point(199, 40);
+            button3.Location = new Point(139, 24);
+            button3.Margin = new Padding(2);
             button3.Name = "button3";
-            button3.Size = new Size(218, 34);
+            button3.Size = new Size(153, 20);
             button3.TabIndex = 1;
             button3.Text = "Copiar cadena al revés";
             button3.UseVisualStyleBackColor = true;
             // 
             // btnCopiarCad
             // 
-            btnCopiarCad.Location = new Point(6, 40);
+            btnCopiarCad.Location = new Point(4, 24);
+            btnCopiarCad.Margin = new Padding(2);
             btnCopiarCad.Name = "btnCopiarCad";
-            btnCopiarCad.Size = new Size(169, 34);
+            btnCopiarCad.Size = new Size(118, 20);
             btnCopiarCad.TabIndex = 0;
             btnCopiarCad.Text = "Copiar cadena";
             btnCopiarCad.UseVisualStyleBackColor = true;
@@ -651,81 +719,92 @@
             dtgCinta.AllowUserToAddRows = false;
             dtgCinta.AllowUserToDeleteRows = false;
             dtgCinta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgCinta.Location = new Point(457, 355);
+            dtgCinta.Enabled = false;
+            dtgCinta.Location = new Point(320, 213);
+            dtgCinta.Margin = new Padding(2);
             dtgCinta.Name = "dtgCinta";
             dtgCinta.ReadOnly = true;
             dtgCinta.RowHeadersWidth = 62;
-            dtgCinta.Size = new Size(1017, 102);
+            dtgCinta.Size = new Size(712, 69);
             dtgCinta.TabIndex = 3;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(457, 327);
+            label4.Location = new Point(320, 196);
+            label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(52, 25);
+            label4.Size = new Size(35, 15);
             label4.TabIndex = 4;
             label4.Text = "Cinta";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(447, 516);
+            label5.Location = new Point(313, 310);
+            label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(103, 25);
+            label5.Size = new Size(68, 15);
             label5.TabIndex = 5;
             label5.Text = "Compuesta";
             // 
             // txtCompuesta
             // 
-            txtCompuesta.Location = new Point(447, 544);
+            txtCompuesta.Location = new Point(313, 326);
+            txtCompuesta.Margin = new Padding(2);
             txtCompuesta.Multiline = true;
             txtCompuesta.Name = "txtCompuesta";
             txtCompuesta.ReadOnly = true;
-            txtCompuesta.Size = new Size(1017, 53);
+            txtCompuesta.Size = new Size(713, 33);
             txtCompuesta.TabIndex = 6;
             // 
             // button4
             // 
-            button4.Location = new Point(457, 463);
+            button4.Location = new Point(317, 286);
+            button4.Margin = new Padding(2);
             button4.Name = "button4";
-            button4.Size = new Size(265, 36);
+            button4.Size = new Size(186, 22);
             button4.TabIndex = 7;
             button4.Text = "<- Mover a la Izquierda";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button5
             // 
-            button5.Location = new Point(728, 463);
+            button5.Location = new Point(504, 286);
+            button5.Margin = new Padding(2);
             button5.Name = "button5";
-            button5.Size = new Size(265, 36);
+            button5.Size = new Size(186, 22);
             button5.TabIndex = 8;
             button5.Text = "Mover a la Derecha ->";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // txtMovimientos
             // 
-            txtMovimientos.Location = new Point(447, 647);
+            txtMovimientos.Location = new Point(313, 388);
+            txtMovimientos.Margin = new Padding(2);
             txtMovimientos.Multiline = true;
             txtMovimientos.Name = "txtMovimientos";
             txtMovimientos.ReadOnly = true;
-            txtMovimientos.Size = new Size(1017, 123);
+            txtMovimientos.Size = new Size(713, 75);
             txtMovimientos.TabIndex = 10;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(447, 619);
+            label6.Location = new Point(313, 371);
+            label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(116, 25);
+            label6.Size = new Size(77, 15);
             label6.TabIndex = 9;
             label6.Text = "Movimientos";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1492, 782);
+            ClientSize = new Size(1044, 469);
             Controls.Add(txtMovimientos);
             Controls.Add(label6);
             Controls.Add(button5);
@@ -737,6 +816,7 @@
             Controls.Add(groupBox1);
             Controls.Add(gbxOperaciones);
             Controls.Add(gbxDatosMT);
+            Margin = new Padding(2);
             Name = "Form1";
             ShowIcon = false;
             Text = "Simulador de Máquina de Turing";
@@ -759,7 +839,7 @@
         private Button btnAlfabeto;
         private TextBox txtCadena;
         private Label lblCadena;
-        private Button button1;
+        private Button btnCapturarCadena;
         private Label label1;
         private Label lblPosIni;
         private Button button2;
@@ -816,5 +896,6 @@
         private Button button5;
         private TextBox txtMovimientos;
         private Label label6;
+        private ToolTip tpCadena;
     }
 }

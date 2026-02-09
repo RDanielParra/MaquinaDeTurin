@@ -5,9 +5,31 @@
         int[] alfabeto;
         char[] cadena;
         int cabezal;
+        string subindice = ".";
+        string diferente = "!";
         public Form1()
         {
             InitializeComponent();
+        }
+
+        public void Limpiarcbx()
+        {
+            cbxBuscarSIgual.Items.Clear();
+            cbxBuscarSDif.Items.Clear();
+            cbxEliminar1SIgual.Items.Clear();
+            cbxEliminarHasta.Items.Clear();
+            cbxEliminarSDif.Items.Clear();
+            cbxEliminarSIgual.Items.Clear();
+            cbxEscribirSimb.Items.Clear();
+        }
+
+        public void ActualizarCinta()
+        {
+            dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
+            dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
+            dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[cabezal];
+            dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
+            dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
         }
 
         private void txtCadena_TextChanged(object sender, EventArgs e)
@@ -73,6 +95,8 @@
         {
             dtgCinta.Columns.Clear();
             dtgCinta.Rows.Clear();
+            txtCompuesta.Clear();
+            txtMovimientos.Clear();
 
             for (int i = 0; i < cadena.Length; i++)
             {
@@ -94,6 +118,25 @@
                 dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
                 dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
                 MessageBox.Show("Maquina de Turing encendida.");
+
+                Limpiarcbx();
+                for (int i = 0; i < alfabeto.Length; i++)
+                {
+                    cbxBuscarSIgual.Items.Add((char)alfabeto[i]);
+                    cbxBuscarSDif.Items.Add((char)alfabeto[i]);
+                    cbxEliminar1SIgual.Items.Add((char)alfabeto[i]);
+                    cbxEliminarHasta.Items.Add((char)alfabeto[i]);
+                    cbxEliminarSDif.Items.Add((char)alfabeto[i]);
+                    cbxEliminarSIgual.Items.Add((char)alfabeto[i]);
+                    cbxEscribirSimb.Items.Add((char)alfabeto[i]);
+                }
+                cbxBuscarSIgual.Items.Add("Δ");
+                cbxBuscarSDif.Items.Add("Δ");
+                cbxEliminar1SIgual.Items.Add("Δ");
+                cbxEliminarHasta.Items.Add("Δ");
+                cbxEliminarSDif.Items.Add("Δ");
+                cbxEliminarSIgual.Items.Add("Δ");
+                cbxEscribirSimb.Items.Add("Δ");
             }
             else
             {
@@ -107,7 +150,11 @@
 
             if (columnaActual < dtgCinta.Columns.Count - 1)
             {
+                dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
+                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
                 dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual + 1];
+                dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
+                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
                 cabezal++;
             }
             else
@@ -122,12 +169,122 @@
 
             if (columnaActual > 0)
             {
+                dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
+                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
                 dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual - 1];
+                dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
+                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
                 cabezal--;
             }
             else
             {
                 MessageBox.Show("Has llegado al inicio de la cinta (Izquierda).");
+            }
+        }
+
+        private void btnBuscarIgualIzq_Click(object sender, EventArgs e)
+        {
+
+            if (cbxBuscarSIgual.Text.ToString() == "")
+            {
+                MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string compuesta = "I" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
+            for (int i = cabezal; i > 0; i--)
+            {
+
+                if (cbxBuscarSIgual.Text == cadena[i - 1].ToString())
+                {
+                    cabezal = i - 1;
+                    txtCompuesta.Text += compuesta;
+                    txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + cabezal.ToString() + "\n";
+                    ActualizarCinta();
+                    break;
+                }
+                if (i - 1 == 0)
+                {
+                    MessageBox.Show("El símbolo no se encontró a la izquierda", "Cinta");
+                }
+            }
+
+        }
+
+        private void btnBuscarIgualDer_Click(object sender, EventArgs e)
+        {
+            if (cbxBuscarSIgual.Text.ToString() == null)
+            {
+                MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string compuesta = "D" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
+            for (int i = cabezal; i < cadena.Length - 1; i++)
+            {
+
+                if (cbxBuscarSIgual.Text == cadena[i + 1].ToString())
+                {
+                    cabezal = i + 1;
+                    txtCompuesta.Text += compuesta;
+                    txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + cabezal.ToString() + "\n";
+                    ActualizarCinta();
+                    break;
+                }
+                if (i + 1 == cadena.Length - 1)
+                {
+                    MessageBox.Show("El símbolo no se encontró a la derecha", "Cinta");
+                }
+            }
+        }
+
+        private void btnBuscarDifIzq_Click(object sender, EventArgs e)
+        {
+            if (cbxBuscarSDif.Text.ToString() == "")
+            {
+                MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string compuesta = "I" + diferente + cbxBuscarSDif.Text.ToString() + "->";
+            for (int i = cabezal; i > 0; i--)
+            {
+
+                if (cbxBuscarSDif.Text != cadena[i - 1].ToString())
+                {
+                    cabezal = i - 1;
+                    txtCompuesta.Text += compuesta;
+                    txtMovimientos.Text += "Se encontró un símbolo diferente a " + cbxBuscarSDif.Text.ToString() + " en la posición " + cabezal.ToString() + "\n";
+                    ActualizarCinta();
+                    break;
+                }
+                if (i - 1 == 0)
+                {
+                    MessageBox.Show("No se encontró a la izquierda", "Cinta");
+                }
+            }
+        }
+
+        private void btnBuscarDifDer_Click(object sender, EventArgs e)
+        {
+            if (cbxBuscarSDif.Text.ToString() == null)
+            {
+                MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string compuesta = "D" + diferente + cbxBuscarSDif.Text.ToString() + "->";
+            for (int i = cabezal; i < cadena.Length - 1; i++)
+            {
+
+                if (cbxBuscarSDif.Text != cadena[i + 1].ToString())
+                {
+                    cabezal = i + 1;
+                    txtCompuesta.Text += compuesta;
+                    txtMovimientos.Text += "Se encontró un símbolo diferente a " + cbxBuscarSDif.Text.ToString() + " en la posición " + cabezal.ToString() + "\n";
+                    ActualizarCinta();
+                    break;
+                }
+                if (i + 1 == cadena.Length - 1)
+                {
+                    MessageBox.Show("No se encontró a la derecha", "Cinta");
+                }
             }
         }
     }

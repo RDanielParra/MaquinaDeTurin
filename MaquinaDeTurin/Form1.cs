@@ -58,21 +58,20 @@
 
             if (e.KeyChar == (char)Keys.Space)
             {
-                e.Handled = true; // Bloquea el espacio
+                e.Handled = true;
                 int cursor = txtCadena.SelectionStart;
                 txtCadena.Text = txtCadena.Text.Insert(cursor, "Δ");
                 txtCadena.SelectionStart = cursor + 1;
                 return;
             }
 
-            // El evento KeyPress distingue automáticamente entre 'a' y 'A'
             if (alfabeto.Contains(e.KeyChar) || char.IsControl(e.KeyChar))
             {
                 tpCadena.Hide(txtCadena);
             }
             else
             {
-                e.Handled = true; // Bloquea el carácter si no está en el array exacto
+                e.Handled = true;
                 tpCadena.ToolTipIcon = ToolTipIcon.Warning;
                 tpCadena.ToolTipTitle = "Carácter no permitido";
                 tpCadena.Show("Solo se permiten los símbolos exactos del alfabeto.", txtCadena, 0, -45, 2000);
@@ -190,7 +189,7 @@
                 MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(cabezal == 0)
+            if (cabezal == 0)
             {
                 MessageBox.Show("Ya no se puede ir a la izquierda", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -222,7 +221,7 @@
                 MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (cabezal == cadena.Length-1)
+            if (cabezal == cadena.Length - 1)
             {
                 MessageBox.Show("Ya no se puede ir a la derecha", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -306,6 +305,11 @@
                     MessageBox.Show("No se encontró a la derecha", "Cinta");
                 }
             }
+        }
+
+        private void btnEliminarIgualIzq_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

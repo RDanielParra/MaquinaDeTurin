@@ -190,6 +190,11 @@
                 MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if(cabezal == 0)
+            {
+                MessageBox.Show("Ya no se puede ir a la izquierda", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             string compuesta = "I" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
             for (int i = cabezal; i > 0; i--)
             {
@@ -212,9 +217,14 @@
 
         private void btnBuscarIgualDer_Click(object sender, EventArgs e)
         {
-            if (cbxBuscarSIgual.Text.ToString() == null)
+            if (cbxBuscarSIgual.Text.ToString() == "")
             {
                 MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (cabezal == cadena.Length-1)
+            {
+                MessageBox.Show("Ya no se puede ir a la derecha", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             string compuesta = "D" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
@@ -243,6 +253,11 @@
                 MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (cabezal == 0)
+            {
+                MessageBox.Show("Ya no se puede ir a la izquierda", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             string compuesta = "I" + diferente + cbxBuscarSDif.Text.ToString() + "->";
             for (int i = cabezal; i > 0; i--)
             {
@@ -264,9 +279,14 @@
 
         private void btnBuscarDifDer_Click(object sender, EventArgs e)
         {
-            if (cbxBuscarSDif.Text.ToString() == null)
+            if (cbxBuscarSDif.Text.ToString() == "")
             {
                 MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (cabezal == cadena.Length - 1)
+            {
+                MessageBox.Show("Ya no se puede ir a la derecha", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             string compuesta = "D" + diferente + cbxBuscarSDif.Text.ToString() + "->";

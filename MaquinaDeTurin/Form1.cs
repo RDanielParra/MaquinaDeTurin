@@ -7,6 +7,46 @@
         int cabezal;
         string subindice = ".";
         string diferente = "!";
+        string blanco = "Δ";
+
+        public void moverIzquierda()
+        {
+            int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
+
+            if (columnaActual > 0)
+            {
+                dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
+                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
+                dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual - 1];
+                dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
+                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
+                cabezal--;
+            }
+            else
+            {
+                MessageBox.Show("Has llegado al inicio de la cinta (Izquierda).");
+            }
+        }
+
+        public void moverDerecha()
+        {
+            int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
+
+            if (columnaActual < dtgCinta.Columns.Count - 1)
+            {
+                dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
+                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
+                dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual + 1];
+                dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
+                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
+                cabezal++;
+            }
+            else
+            {
+                MessageBox.Show("Has llegado al final de la cinta (Derecha).");
+            }
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -60,7 +100,7 @@
             {
                 e.Handled = true;
                 int cursor = txtCadena.SelectionStart;
-                txtCadena.Text = txtCadena.Text.Insert(cursor, "Δ");
+                txtCadena.Text = txtCadena.Text.Insert(cursor, blanco);
                 txtCadena.SelectionStart = cursor + 1;
                 return;
             }
@@ -145,40 +185,18 @@
 
         private void button5_Click(object sender, EventArgs e)
         {
-            int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
+            moverDerecha();
+            txtCompuesta.Text += "D" + "->";
+            txtMovimientos.Text += "Movimiento a la Derecha" + "\r\n";
 
-            if (columnaActual < dtgCinta.Columns.Count - 1)
-            {
-                dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
-                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
-                dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual + 1];
-                dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
-                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
-                cabezal++;
-            }
-            else
-            {
-                MessageBox.Show("Has llegado al final de la cinta (Derecha).");
-            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
+            moverIzquierda();
+            txtCompuesta.Text += "I" + "->";
+            txtMovimientos.Text += "Movimiento a la Izquierda" + "\r\n";
 
-            if (columnaActual > 0)
-            {
-                dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
-                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
-                dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual - 1];
-                dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
-                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
-                cabezal--;
-            }
-            else
-            {
-                MessageBox.Show("Has llegado al inicio de la cinta (Izquierda).");
-            }
         }
 
         private void btnBuscarIgualIzq_Click(object sender, EventArgs e)
@@ -202,7 +220,7 @@
                 {
                     cabezal = i - 1;
                     txtCompuesta.Text += compuesta;
-                    txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + cabezal.ToString() + "\n";
+                    txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
                     ActualizarCinta();
                     break;
                 }
@@ -234,7 +252,7 @@
                 {
                     cabezal = i + 1;
                     txtCompuesta.Text += compuesta;
-                    txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + cabezal.ToString() + "\n";
+                    txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
                     ActualizarCinta();
                     break;
                 }
@@ -265,7 +283,7 @@
                 {
                     cabezal = i - 1;
                     txtCompuesta.Text += compuesta;
-                    txtMovimientos.Text += "Se encontró un símbolo diferente a " + cbxBuscarSDif.Text.ToString() + " en la posición " + cabezal.ToString() + "\n";
+                    txtMovimientos.Text += "Se encontró un símbolo diferente a " + cbxBuscarSDif.Text.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
                     ActualizarCinta();
                     break;
                 }
@@ -296,7 +314,7 @@
                 {
                     cabezal = i + 1;
                     txtCompuesta.Text += compuesta;
-                    txtMovimientos.Text += "Se encontró un símbolo diferente a " + cbxBuscarSDif.Text.ToString() + " en la posición " + cabezal.ToString() + "\n";
+                    txtMovimientos.Text += "Se encontró un símbolo diferente a " + cbxBuscarSDif.Text.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
                     ActualizarCinta();
                     break;
                 }
@@ -309,7 +327,171 @@
 
         private void btnEliminarIgualIzq_Click(object sender, EventArgs e)
         {
+            string simbolo = cbxEliminarSIgual.Text;
+            while (cabezal < dtgCinta.Columns.Count - 1)
+            {
+                int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
+                if (columnaActual < dtgCinta.Columns.Count - 1)
+                {
+                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
+                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
+                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual - 1];
+                    if (dtgCinta.CurrentCell.Value == simbolo)
+                    {
+                        dtgCinta.CurrentCell.Value = blanco;
+                    }
+                    cabezal--;
+                }
+            }
+            dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
+            dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
+            MessageBox.Show("Eliminados todos los " + simbolo + " del lado izquierdo");
+        }
+
+        private void btnEscribirSIzq_Click(object sender, EventArgs e)
+        {
+            string simbolo = cbxEscribirSimb.Text;
+            dtgCinta.CurrentCell.Value = simbolo;
+            txtCompuesta.Text += simbolo + "->";
+            txtMovimientos.Text += "Se escribio el simbolo " + simbolo + " en la posición " + cabezal.ToString() + "\r\n";
+            moverIzquierda();
+            MessageBox.Show("Simbolo " + simbolo + " escrito correctamente");
+
+        }
+
+        private void btnEscribirSDer_Click(object sender, EventArgs e)
+        {
+            string simbolo = cbxEscribirSimb.Text;
+            dtgCinta.CurrentCell.Value = simbolo;
+            txtCompuesta.Text += simbolo + "->";
+            txtMovimientos.Text += "Se escribio el simbolo " + simbolo + " en la posición " + cabezal.ToString() + "\r\n";
+            moverDerecha();
+            MessageBox.Show("Simbolo " + simbolo + " escrito correctamente");
+        }
+
+        private void btnEliminarIgualDer_Click(object sender, EventArgs e)
+        {
+            string simbolo = cbxEliminarSIgual.Text;
+            while (cabezal < dtgCinta.Columns.Count - 1)
+            {
+                int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
+
+                if (columnaActual < dtgCinta.Columns.Count - 1)
+                {
+                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
+                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
+                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual + 1];
+                    if (dtgCinta.CurrentCell.Value == simbolo)
+                    {
+                        dtgCinta.CurrentCell.Value = blanco;
+                    }
+                    cabezal++;
+                }
+            }
+            dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
+            dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
+            MessageBox.Show("Eliminados todos los " + simbolo + " del lado derecho");
+
+        }
+
+        private void btnEliminarDifDer_Click(object sender, EventArgs e)
+        {
+            string simbolo = cbxEliminarSDif.Text;
+            while (cabezal < dtgCinta.Columns.Count - 1)
+            {
+                int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
+
+                if (columnaActual < dtgCinta.Columns.Count - 1)
+                {
+                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
+                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
+                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual + 1];
+                    if (dtgCinta.CurrentCell.Value != simbolo)
+                    {
+                        dtgCinta.CurrentCell.Value = blanco;
+                    }
+                    cabezal++;
+                }
+            }
+            dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
+            dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
+            MessageBox.Show("Eliminados todos los diferentes de " + simbolo + " del lado derecho");
+        }
+
+        private void btnEliminarDifIzq_Click(object sender, EventArgs e)
+        {
+            string simbolo = cbxEliminarSDif.Text;
+            while (cabezal < dtgCinta.Columns.Count - 1)
+            {
+                int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
+
+                if (columnaActual < dtgCinta.Columns.Count - 1)
+                {
+                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
+                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
+                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual - 1];
+                    if (dtgCinta.CurrentCell.Value != simbolo)
+                    {
+                        dtgCinta.CurrentCell.Value = blanco;
+                    }
+
+                    cabezal--;
+                }
+            }
+            dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
+            dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
+            MessageBox.Show("Eliminados todos los " + simbolo + " del lado izquierdo");
+        }
+
+        private void btnEliminar1SIgualDer_Click(object sender, EventArgs e)
+        {
+            string simbolo = cbxEliminar1SIgual.Text;
+            while (cabezal < dtgCinta.Columns.Count - 1)
+            {
+                int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
+
+                if (columnaActual < dtgCinta.Columns.Count - 1)
+                {
+                    cabezal++;
+                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
+                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
+                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual + 1];
+
+                    if (dtgCinta.CurrentCell.Value == simbolo)
+                    {
+                        dtgCinta.CurrentCell.Value = blanco;
+                        break;
+                    }
+
+                }
+            }
+            MessageBox.Show("Solo 1, en la pos " + cabezal);
+        }
+
+        private void btnEliminar1SIgualIzq_Click(object sender, EventArgs e)
+        {
+            string simbolo = cbxEliminar1SIgual.Text;
+            while (cabezal < dtgCinta.Columns.Count - 1)
+            {
+                int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
+
+                if (columnaActual < dtgCinta.Columns.Count - 1)
+                {
+                    cabezal--;
+                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
+                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
+                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual - 1];
+
+                    if (dtgCinta.CurrentCell.Value == simbolo)
+                    {
+                        dtgCinta.CurrentCell.Value = blanco;
+                        break;
+                    }
+
+                }
+            }
+            MessageBox.Show("Solo 1, en la pos " + cabezal);
         }
     }
 }

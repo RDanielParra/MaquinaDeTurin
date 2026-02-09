@@ -441,7 +441,7 @@
             }
             dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
             dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
-            MessageBox.Show("Eliminados todos los " + simbolo + " del lado izquierdo");
+            MessageBox.Show("Eliminados todos los diferentes de " + simbolo + " del lado izquierdo");
         }
 
         private void btnEliminar1SIgualDer_Click(object sender, EventArgs e)
@@ -466,7 +466,7 @@
 
                 }
             }
-            MessageBox.Show("Solo 1, en la pos " + cabezal);
+            MessageBox.Show("Se elimino el primer " + simbolo + ", que se encontro en la posicion " + cabezal + " del lado Derecho");
         }
 
         private void btnEliminar1SIgualIzq_Click(object sender, EventArgs e)
@@ -491,7 +491,57 @@
 
                 }
             }
-            MessageBox.Show("Solo 1, en la pos " + cabezal);
+            MessageBox.Show("Se elimino el primer " + simbolo + ", que se encontro en la posicion " + cabezal + " del lado Izquierdo");
+        }
+
+        private void btnEliminarHastaDer_Click(object sender, EventArgs e)
+        {
+            string simbolo = cbxEliminarHasta.Text;
+            while (cabezal < dtgCinta.Columns.Count - 1)
+            {
+                int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
+
+                if (columnaActual < dtgCinta.Columns.Count - 1)
+                {
+                    cabezal++;
+                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
+                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
+                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual + 1];
+                    dtgCinta.CurrentCell.Value = blanco;
+
+                    if (dtgCinta.CurrentCell.Value == simbolo)
+                    {
+                        break;
+                    }
+
+                }
+            }
+            MessageBox.Show("Se elimino todos los simbolos del lado derecho hasta la posicion  " + cabezal + " donde se encontre el " + simbolo);
+        }
+
+        private void btnEliminarHastaIzq_Click(object sender, EventArgs e)
+        {
+            string simbolo = cbxEliminarHasta.Text;
+            while (cabezal < dtgCinta.Columns.Count - 1)
+            {
+                int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
+
+                if (columnaActual < dtgCinta.Columns.Count - 1)
+                {
+                    cabezal--;
+                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
+                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
+                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual - 1];
+                    dtgCinta.CurrentCell.Value = blanco;
+
+                    if (dtgCinta.CurrentCell.Value == simbolo)
+                    {
+                        break;
+                    }
+
+                }
+            }
+            MessageBox.Show("Se elimino todos los simbolos del lado derecho hasta la posicion  " + cabezal + " donde se encontre el " + simbolo);
         }
     }
 }

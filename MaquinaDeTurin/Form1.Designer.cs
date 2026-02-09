@@ -367,23 +367,27 @@
             // 
             // btnEliminarHastaDer
             // 
+            btnEliminarHastaDer.BackColor = SystemColors.Highlight;
             btnEliminarHastaDer.Location = new Point(427, 133);
             btnEliminarHastaDer.Margin = new Padding(2);
             btnEliminarHastaDer.Name = "btnEliminarHastaDer";
             btnEliminarHastaDer.Size = new Size(57, 28);
             btnEliminarHastaDer.TabIndex = 23;
             btnEliminarHastaDer.Text = "Der ->";
-            btnEliminarHastaDer.UseVisualStyleBackColor = true;
+            btnEliminarHastaDer.UseVisualStyleBackColor = false;
+            btnEliminarHastaDer.Click += btnEliminarHastaDer_Click;
             // 
             // btnEliminarHastaIzq
             // 
+            btnEliminarHastaIzq.BackColor = SystemColors.Highlight;
             btnEliminarHastaIzq.Location = new Point(361, 133);
             btnEliminarHastaIzq.Margin = new Padding(2);
             btnEliminarHastaIzq.Name = "btnEliminarHastaIzq";
             btnEliminarHastaIzq.Size = new Size(57, 28);
             btnEliminarHastaIzq.TabIndex = 22;
             btnEliminarHastaIzq.Text = "<- Izq";
-            btnEliminarHastaIzq.UseVisualStyleBackColor = true;
+            btnEliminarHastaIzq.UseVisualStyleBackColor = false;
+            btnEliminarHastaIzq.Click += btnEliminarHastaIzq_Click;
             // 
             // cbxEliminarHasta
             // 
@@ -495,7 +499,7 @@
             // 
             // btnEliminarIgualDer
             // 
-            btnEliminarIgualDer.BackColor = SystemColors.MenuHighlight;
+            btnEliminarIgualDer.BackColor = SystemColors.Highlight;
             btnEliminarIgualDer.Location = new Point(246, 56);
             btnEliminarIgualDer.Margin = new Padding(2);
             btnEliminarIgualDer.Name = "btnEliminarIgualDer";

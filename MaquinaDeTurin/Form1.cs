@@ -543,5 +543,72 @@
             }
             MessageBox.Show("Se elimino todos los simbolos del lado derecho hasta la posicion  " + cabezal + " donde se encontre el " + simbolo);
         }
+
+        private void btnBuscarCadena_Click(object sender, EventArgs e)
+        {
+            char[] cadena;
+            cadena = txtBuscarCadena.Text.ToCharArray();
+            cbxPosicionIni.Items.Clear();
+            for (int i = 0; i < cadena.Length; i++)
+            {
+                cbxPosicionIni.Items.Add(i);
+            }
+
+            if (radBuscarCadIzq.Checked == true)
+            {
+                //validar si se encuentran los limites
+                //llamar la funcion en caso de que si se pueda buscar
+                //si es true volver a buscar el siguiente mandando el char que sigue
+                //dowhile
+                //si es false empezar desde el primer char otra vez
+            }
+            else if(radBuscarCadDer.Checked == true)
+            {
+                
+            }
+        }
+
+        private void txtBuscarCadena_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                e.Handled = true;
+                int cursor = txtBuscarCadena.SelectionStart;
+                txtBuscarCadena.Text = txtBuscarCadena.Text.Insert(cursor, blanco);
+                txtBuscarCadena.SelectionStart = cursor + 1;
+                return;
+            }
+
+            if (alfabeto.Contains(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                tpCadena.Hide(txtBuscarCadena);
+            }
+            else
+            {
+                e.Handled = true;
+                tpCadena.ToolTipIcon = ToolTipIcon.Warning;
+                tpCadena.ToolTipTitle = "Carácter no permitido";
+                tpCadena.Show("Solo se permiten los símbolos exactos del alfabeto.", txtBuscarCadena, 0, -45, 2000);
+            }
+        }
+
+        private bool BuscarIzq(char simboloBuscar)
+        {
+            string compuesta = "I" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
+            for (int i = cabezal; i > 0; i--)
+            {
+
+                if (cbxBuscarSIgual.Text == cadena[i - 1].ToString())
+                {
+                    cabezal = i - 1;
+                    txtCompuesta.Text += compuesta;
+                    txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
+                    ActualizarCinta();
+                    return true;
+                }
+               
+            }
+            return false;
+        }
     }
 }

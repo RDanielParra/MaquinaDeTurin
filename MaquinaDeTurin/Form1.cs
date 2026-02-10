@@ -522,10 +522,13 @@
         {
             char[] cadena;
             cadena = txtBuscarCadena.Text.ToCharArray();
-            cbxPosicionIni.Items.Clear();
-            for (int i = 0; i < cadena.Length; i++)
+            char[] cadenainv = cadena;
+            for(int i = cadena.Length-1; i>=0; i--)
             {
-                cbxPosicionIni.Items.Add(i);
+                for(int j = 0; j < cadena.Length; j++)
+                {
+                    cadenainv[j] = cadena[i];
+                }
             }
 
             if (radBuscarCadIzq.Checked == true)
@@ -535,26 +538,18 @@
                 //si es true volver a buscar el siguiente mandando el char que sigue
                 //dowhile
                 //si es false empezar desde el primer char otra vez
-
-                if (cabezal == 0)
-                {
-                    MessageBox.Show("Ya no se puede ir a la izquierda", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                do
-                {
-                    for (int i = 0; i < cadena.Length; i++)
+                    for (int i = 0; i < cadenainv.Length; i++)
                     {
-                        if (BuscarIzq(cadena[i]) == true)
+                        if (cabezal == 0)
                         {
+                            MessageBox.Show("Ya no se puede ir a la izquierda, no se encontro", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
-                        else
+                        if (BuscarIzq(cadenainv[i]) != true)
                         {
                             i = 0;
                         }
                     }
-                } while (cabezal != 0);
             }
             else if (radBuscarCadDer.Checked == true)
             {

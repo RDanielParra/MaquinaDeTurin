@@ -552,6 +552,26 @@
                 //si es true volver a buscar el siguiente mandando el char que sigue
                 //dowhile
                 //si es false empezar desde el primer char otra vez
+
+                if (cabezal == 0)
+                {
+                    MessageBox.Show("Ya no se puede ir a la izquierda", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                do
+                {
+                    for (int i = 0; i < cadena.Length; i++)
+                    {
+                        if (BuscarIzq(cadena[i]) == true)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            i = 0;
+                        }
+                    }
+                } while (cabezal != 0);
             }
             else if (radBuscarCadDer.Checked == true)
             {
@@ -585,15 +605,15 @@
 
         private bool BuscarIzq(char simboloBuscar)
         {
-            string compuesta = "I" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
+            string compuesta = "I" + subindice + simboloBuscar.ToString() + "->";
             for (int i = cabezal; i > 0; i--)
             {
 
-                if (cbxBuscarSIgual.Text == cadena[i - 1].ToString())
+                if (simboloBuscar.ToString() == cadena[i - 1].ToString())
                 {
                     cabezal = i - 1;
                     txtCompuesta.Text += compuesta;
-                    txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
+                    txtMovimientos.Text += "Se encontró " + simboloBuscar.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
                     ActualizarCinta();
                     return true;
                 }

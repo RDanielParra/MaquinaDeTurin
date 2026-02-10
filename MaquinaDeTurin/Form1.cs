@@ -86,7 +86,7 @@
         {
             string alfabetoCadena = txtAlfabeto.Text;
             char[] alfabetoChar = alfabetoCadena.ToCharArray();
-            alfabeto = alfabetoChar.Select(c => (int)char.ToUpper(c)).ToArray();
+            alfabeto = alfabetoChar.Select(c => (int)c).ToArray();
             txtCadena.Enabled = true;
             btnCapturarCadena.Enabled = true;
             MessageBox.Show("Alfabeto capturado correctamente!");
@@ -199,7 +199,7 @@
 
         }
 
-        private void btnBuscarIgualIzq_Click(object sender, EventArgs e)
+        private async void btnBuscarIgualIzq_Click(object sender, EventArgs e)
         {
 
             if (cbxBuscarSIgual.Text.ToString() == "")
@@ -213,26 +213,24 @@
                 return;
             }
             string compuesta = "I" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
-            for (int i = cabezal; i > 0; i--)
+            while (cabezal < dtgCinta.Columns.Count - 1)
             {
-
-                if (cbxBuscarSIgual.Text == cadena[i - 1].ToString())
+                cabezal--;
+                ActualizarCinta();
+                await Task.Delay(500);
+                if (cbxBuscarSIgual.Text == cadena[cabezal].ToString())
                 {
-                    cabezal = i - 1;
                     txtCompuesta.Text += compuesta;
                     txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
-                    ActualizarCinta();
-                    break;
-                }
-                if (i - 1 == 0)
-                {
-                    MessageBox.Show("El símbolo no se encontró a la izquierda", "Cinta");
+                    return;
                 }
             }
+            MessageBox.Show("El símbolo no se encontró a la izquierda", "Cinta");
+
 
         }
 
-        private void btnBuscarIgualDer_Click(object sender, EventArgs e)
+        private async void btnBuscarIgualDer_Click(object sender, EventArgs e)
         {
             if (cbxBuscarSIgual.Text.ToString() == "")
             {
@@ -245,22 +243,19 @@
                 return;
             }
             string compuesta = "D" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
-            for (int i = cabezal; i < cadena.Length - 1; i++)
+            while (cabezal < dtgCinta.Columns.Count - 1)
             {
-
-                if (cbxBuscarSIgual.Text == cadena[i + 1].ToString())
+                cabezal++;
+                ActualizarCinta();
+                await Task.Delay(500);
+                if (cbxBuscarSIgual.Text == cadena[cabezal].ToString())
                 {
-                    cabezal = i + 1;
                     txtCompuesta.Text += compuesta;
                     txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
-                    ActualizarCinta();
-                    break;
-                }
-                if (i + 1 == cadena.Length - 1)
-                {
-                    MessageBox.Show("El símbolo no se encontró a la derecha", "Cinta");
+                    return;
                 }
             }
+            MessageBox.Show("El símbolo no se encontró a la derecha", "Cinta");
         }
 
         private void btnBuscarDifIzq_Click(object sender, EventArgs e)
@@ -454,19 +449,17 @@
                 if (columnaActual < dtgCinta.Columns.Count - 1)
                 {
                     cabezal++;
-                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
-                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
-                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual + 1];
+                    ActualizarCinta();
 
-                    if (dtgCinta.CurrentCell.Value == simbolo)
+                    if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
-                        break;
+                        MessageBox.Show("Se elimino el primer " + simbolo + ", que se encontro en la posicion " + cabezal + " del lado Derecho");
+                        return;
                     }
 
                 }
             }
-            MessageBox.Show("Se elimino el primer " + simbolo + ", que se encontro en la posicion " + cabezal + " del lado Derecho");
         }
 
         private void btnEliminar1SIgualIzq_Click(object sender, EventArgs e)
@@ -479,19 +472,17 @@
                 if (columnaActual < dtgCinta.Columns.Count - 1)
                 {
                     cabezal--;
-                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
-                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
-                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual - 1];
+                    ActualizarCinta();
 
-                    if (dtgCinta.CurrentCell.Value == simbolo)
+                    if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
-                        break;
+                        MessageBox.Show("Se elimino el primer " + simbolo + ", que se encontro en la posicion " + cabezal + " del lado Izquierdo");
+                        return;
                     }
 
                 }
             }
-            MessageBox.Show("Se elimino el primer " + simbolo + ", que se encontro en la posicion " + cabezal + " del lado Izquierdo");
         }
 
         private void btnEliminarHastaDer_Click(object sender, EventArgs e)
@@ -511,12 +502,12 @@
 
                     if (dtgCinta.CurrentCell.Value == simbolo)
                     {
-                        break;
+                        MessageBox.Show("Se elimino todos los simbolos del lado derecho hasta la posicion  " + cabezal + " donde se encontre el " + simbolo);
+                        return;
                     }
 
                 }
             }
-            MessageBox.Show("Se elimino todos los simbolos del lado derecho hasta la posicion  " + cabezal + " donde se encontre el " + simbolo);
         }
 
         private void btnEliminarHastaIzq_Click(object sender, EventArgs e)
@@ -536,12 +527,12 @@
 
                     if (dtgCinta.CurrentCell.Value == simbolo)
                     {
-                        break;
+                        MessageBox.Show("Se elimino todos los simbolos del lado derecho hasta la posicion  " + cabezal + " donde se encontre el " + simbolo);
+                        return;
                     }
 
                 }
             }
-            MessageBox.Show("Se elimino todos los simbolos del lado derecho hasta la posicion  " + cabezal + " donde se encontre el " + simbolo);
         }
 
         private void btnBuscarCadena_Click(object sender, EventArgs e)
@@ -562,9 +553,9 @@
                 //dowhile
                 //si es false empezar desde el primer char otra vez
             }
-            else if(radBuscarCadDer.Checked == true)
+            else if (radBuscarCadDer.Checked == true)
             {
-                
+
             }
         }
 
@@ -606,9 +597,14 @@
                     ActualizarCinta();
                     return true;
                 }
-               
+
             }
             return false;
+        }
+
+        private void txtAlfabeto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
     }
 }

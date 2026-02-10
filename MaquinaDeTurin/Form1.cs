@@ -213,7 +213,7 @@
                 return;
             }
             string compuesta = "I" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
-            while (cabezal < dtgCinta.Columns.Count - 1)
+            while (cabezal >= 0)
             {
                 cabezal--;
                 ActualizarCinta();
@@ -258,7 +258,7 @@
             MessageBox.Show("El símbolo no se encontró a la derecha", "Cinta");
         }
 
-        private void btnBuscarDifIzq_Click(object sender, EventArgs e)
+        private async void btnBuscarDifIzq_Click(object sender, EventArgs e)
         {
             if (cbxBuscarSDif.Text.ToString() == "")
             {
@@ -271,25 +271,23 @@
                 return;
             }
             string compuesta = "I" + diferente + cbxBuscarSDif.Text.ToString() + "->";
-            for (int i = cabezal; i > 0; i--)
+            while (cabezal >= 0)
             {
-
-                if (cbxBuscarSDif.Text != cadena[i - 1].ToString())
+                cabezal--;
+                ActualizarCinta();
+                await Task.Delay(500);
+                if (cbxBuscarSDif.Text != cadena[cabezal].ToString())
                 {
-                    cabezal = i - 1;
                     txtCompuesta.Text += compuesta;
                     txtMovimientos.Text += "Se encontró un símbolo diferente a " + cbxBuscarSDif.Text.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
-                    ActualizarCinta();
-                    break;
-                }
-                if (i - 1 == 0)
-                {
-                    MessageBox.Show("No se encontró a la izquierda", "Cinta");
+                    return;
                 }
             }
+            MessageBox.Show("No se encontró a la izquierda", "Cinta");
+
         }
 
-        private void btnBuscarDifDer_Click(object sender, EventArgs e)
+        private async void btnBuscarDifDer_Click(object sender, EventArgs e)
         {
             if (cbxBuscarSDif.Text.ToString() == "")
             {
@@ -302,45 +300,43 @@
                 return;
             }
             string compuesta = "D" + diferente + cbxBuscarSDif.Text.ToString() + "->";
-            for (int i = cabezal; i < cadena.Length - 1; i++)
+            while (cabezal < dtgCinta.Columns.Count - 1)
             {
-
-                if (cbxBuscarSDif.Text != cadena[i + 1].ToString())
+                cabezal++;
+                ActualizarCinta();
+                await Task.Delay(500);
+                if (cbxBuscarSDif.Text != cadena[cabezal].ToString())
                 {
-                    cabezal = i + 1;
                     txtCompuesta.Text += compuesta;
                     txtMovimientos.Text += "Se encontró un símbolo diferente a " + cbxBuscarSDif.Text.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
-                    ActualizarCinta();
-                    break;
-                }
-                if (i + 1 == cadena.Length - 1)
-                {
-                    MessageBox.Show("No se encontró a la derecha", "Cinta");
+                    return;
                 }
             }
+            MessageBox.Show("No se encontró a la derecha", "Cinta");
         }
 
-        private void btnEliminarIgualIzq_Click(object sender, EventArgs e)
+        private async void btnEliminarIgualIzq_Click(object sender, EventArgs e)
         {
             string simbolo = cbxEliminarSIgual.Text;
-            while (cabezal < dtgCinta.Columns.Count - 1)
+            while (cabezal >= 0)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
                 if (columnaActual < dtgCinta.Columns.Count - 1)
                 {
-                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
-                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
-                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual - 1];
-                    if (dtgCinta.CurrentCell.Value == simbolo)
+                    if(cabezal-- < 0)
+                    {
+                        return;
+                    }
+                    cabezal--;
+                    ActualizarCinta();
+                    await Task.Delay(500);
+                    if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
                     }
-                    cabezal--;
                 }
             }
-            dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
-            dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
             MessageBox.Show("Eliminados todos los " + simbolo + " del lado izquierdo");
         }
 
@@ -365,7 +361,7 @@
             MessageBox.Show("Simbolo " + simbolo + " escrito correctamente");
         }
 
-        private void btnEliminarIgualDer_Click(object sender, EventArgs e)
+        private async void btnEliminarIgualDer_Click(object sender, EventArgs e)
         {
             string simbolo = cbxEliminarSIgual.Text;
             while (cabezal < dtgCinta.Columns.Count - 1)
@@ -374,23 +370,20 @@
 
                 if (columnaActual < dtgCinta.Columns.Count - 1)
                 {
-                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
-                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
-                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual + 1];
-                    if (dtgCinta.CurrentCell.Value == simbolo)
+                    cabezal++;
+                    ActualizarCinta();
+                    await Task.Delay(500);
+                    if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
                     }
-                    cabezal++;
                 }
             }
-            dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
-            dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
             MessageBox.Show("Eliminados todos los " + simbolo + " del lado derecho");
 
         }
 
-        private void btnEliminarDifDer_Click(object sender, EventArgs e)
+        private async void btnEliminarDifDer_Click(object sender, EventArgs e)
         {
             string simbolo = cbxEliminarSDif.Text;
             while (cabezal < dtgCinta.Columns.Count - 1)
@@ -399,47 +392,41 @@
 
                 if (columnaActual < dtgCinta.Columns.Count - 1)
                 {
-                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
-                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
-                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual + 1];
-                    if (dtgCinta.CurrentCell.Value != simbolo)
+                    cabezal++;
+                    ActualizarCinta();
+                    await Task.Delay(500);
+                    if (dtgCinta.CurrentCell.Value.ToString() != simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
                     }
-                    cabezal++;
                 }
             }
-            dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
-            dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
             MessageBox.Show("Eliminados todos los diferentes de " + simbolo + " del lado derecho");
         }
 
-        private void btnEliminarDifIzq_Click(object sender, EventArgs e)
+        private async void btnEliminarDifIzq_Click(object sender, EventArgs e)
         {
             string simbolo = cbxEliminarSDif.Text;
-            while (cabezal < dtgCinta.Columns.Count - 1)
+            while (cabezal >= 0)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
                 if (columnaActual < dtgCinta.Columns.Count - 1)
                 {
-                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
-                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
-                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual - 1];
-                    if (dtgCinta.CurrentCell.Value != simbolo)
+                    cabezal--;
+                    ActualizarCinta();
+                    await Task.Delay(500);
+                    if (dtgCinta.CurrentCell.Value.ToString() != simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
                     }
 
-                    cabezal--;
                 }
             }
-            dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
-            dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
             MessageBox.Show("Eliminados todos los diferentes de " + simbolo + " del lado izquierdo");
         }
 
-        private void btnEliminar1SIgualDer_Click(object sender, EventArgs e)
+        private async void btnEliminar1SIgualDer_Click(object sender, EventArgs e)
         {
             string simbolo = cbxEliminar1SIgual.Text;
             while (cabezal < dtgCinta.Columns.Count - 1)
@@ -450,7 +437,7 @@
                 {
                     cabezal++;
                     ActualizarCinta();
-
+                    await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
@@ -462,10 +449,10 @@
             }
         }
 
-        private void btnEliminar1SIgualIzq_Click(object sender, EventArgs e)
+        private async void btnEliminar1SIgualIzq_Click(object sender, EventArgs e)
         {
             string simbolo = cbxEliminar1SIgual.Text;
-            while (cabezal < dtgCinta.Columns.Count - 1)
+            while (cabezal >= 0)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
@@ -473,7 +460,7 @@
                 {
                     cabezal--;
                     ActualizarCinta();
-
+                    await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
@@ -485,7 +472,7 @@
             }
         }
 
-        private void btnEliminarHastaDer_Click(object sender, EventArgs e)
+        private async void btnEliminarHastaDer_Click(object sender, EventArgs e)
         {
             string simbolo = cbxEliminarHasta.Text;
             while (cabezal < dtgCinta.Columns.Count - 1)
@@ -495,12 +482,10 @@
                 if (columnaActual < dtgCinta.Columns.Count - 1)
                 {
                     cabezal++;
-                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
-                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
-                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual + 1];
+                    ActualizarCinta();
                     dtgCinta.CurrentCell.Value = blanco;
-
-                    if (dtgCinta.CurrentCell.Value == simbolo)
+                    await Task.Delay(500);
+                    if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
                         MessageBox.Show("Se elimino todos los simbolos del lado derecho hasta la posicion  " + cabezal + " donde se encontre el " + simbolo);
                         return;
@@ -510,22 +495,20 @@
             }
         }
 
-        private void btnEliminarHastaIzq_Click(object sender, EventArgs e)
+        private async void btnEliminarHastaIzq_Click(object sender, EventArgs e)
         {
             string simbolo = cbxEliminarHasta.Text;
-            while (cabezal < dtgCinta.Columns.Count - 1)
+            while (cabezal >= 0)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
                 if (columnaActual < dtgCinta.Columns.Count - 1)
                 {
                     cabezal--;
-                    dtgCinta.CurrentCell.Style.BackColor = Color.Empty;
-                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Empty;
-                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[columnaActual - 1];
+                    ActualizarCinta();
                     dtgCinta.CurrentCell.Value = blanco;
-
-                    if (dtgCinta.CurrentCell.Value == simbolo)
+                    await Task.Delay(500);
+                    if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
                         MessageBox.Show("Se elimino todos los simbolos del lado derecho hasta la posicion  " + cabezal + " donde se encontre el " + simbolo);
                         return;

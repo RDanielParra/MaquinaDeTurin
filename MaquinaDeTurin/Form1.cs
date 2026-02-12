@@ -4,6 +4,7 @@
     {
         int[] alfabeto;
         char[] cadena;
+        char[] separacion = ['Δ'];
         int cabezal;
         string subindice = ".";
         string diferente = "!";
@@ -43,7 +44,51 @@
             }
             else
             {
-                MessageBox.Show("Has llegado al final de la cinta (Derecha).");
+                //MessageBox.Show("Has llegado al final de la cinta (Derecha).");
+                cadena = cadena.Concat(separacion).ToArray();
+
+                dtgCinta.Columns.Clear();
+                dtgCinta.Rows.Clear();
+
+                for (int i = 0; i < cadena.Length; i++)
+                {
+                    dtgCinta.Columns.Add("Col" + i, i.ToString());
+
+                    dtgCinta.Columns[i].Width = 40;
+                }
+                object[] filaEstructurada = cadena.Select(c => c.ToString()).ToArray();
+                dtgCinta.Rows.Add(filaEstructurada);
+
+                if (cbxPosicionIni.SelectedItem != null)
+                {
+                    cabezal++;
+                    dtgCinta.Focus();
+
+                    dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[cabezal];
+
+                    dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
+                    dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
+
+                    Limpiarcbx();
+                    for (int i = 0; i < alfabeto.Length; i++)
+                    {
+                        cbxBuscarSIgual.Items.Add((char)alfabeto[i]);
+                        cbxBuscarSDif.Items.Add((char)alfabeto[i]);
+                        cbxEliminar1SIgual.Items.Add((char)alfabeto[i]);
+                        cbxEliminarHasta.Items.Add((char)alfabeto[i]);
+                        cbxEliminarSDif.Items.Add((char)alfabeto[i]);
+                        cbxEliminarSIgual.Items.Add((char)alfabeto[i]);
+                        cbxEscribirSimb.Items.Add((char)alfabeto[i]);
+                    }
+                    cbxBuscarSIgual.Items.Add("Δ");
+                    cbxBuscarSDif.Items.Add("Δ");
+                    cbxEliminar1SIgual.Items.Add("Δ");
+                    cbxEliminarHasta.Items.Add("Δ");
+                    cbxEliminarSDif.Items.Add("Δ");
+                    cbxEliminarSIgual.Items.Add("Δ");
+                    cbxEscribirSimb.Items.Add("Δ");
+                }
+
             }
         }
 
@@ -128,6 +173,7 @@
                 cbxPosicionIni.Items.Add(i);
             }
             MessageBox.Show("Cadena capturada correctamente!");
+            cbxPosicionIni.Focus();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -209,7 +255,7 @@
             }
             if (cabezal == 0)
             {
-                MessageBox.Show("Ya no se puede ir a la izquierda", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ya no se puede ir a la izquierda, Terminacion Anormal", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             string compuesta = "I" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
@@ -237,12 +283,16 @@
                 MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            string compuesta = "D" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
             if (cabezal == cadena.Length - 1)
             {
-                MessageBox.Show("Ya no se puede ir a la derecha", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCompuesta.Text += compuesta;
+                txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + (int.Parse(cabezal.ToString()) + 1) + "\r\n";
                 return;
+                //MessageBox.Show("Ya no se puede ir a la derecha", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //return;
             }
-            string compuesta = "D" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
+
             while (cabezal < dtgCinta.Columns.Count - 1)
             {
                 cabezal++;
@@ -265,9 +315,9 @@
                 MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (cabezal == 0)
+            if (cabezal <= 0)
             {
-                MessageBox.Show("Ya no se puede ir a la izquierda", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ya no se puede ir a la izquierda, Terminacion Anormal", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             string compuesta = "I" + diferente + cbxBuscarSDif.Text.ToString() + "->";
@@ -294,12 +344,16 @@
                 MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            string compuesta = "D" + diferente + cbxBuscarSDif.Text.ToString() + "->";
             if (cabezal == cadena.Length - 1)
             {
-                MessageBox.Show("Ya no se puede ir a la derecha", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCompuesta.Text += compuesta;
+                txtMovimientos.Text += "Se encontró " + blanco + " en la posición " + (int.Parse(cabezal.ToString()) + 1) + "\r\n";
                 return;
+                //MessageBox.Show("Ya no se puede ir a la derecha", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //return;
             }
-            string compuesta = "D" + diferente + cbxBuscarSDif.Text.ToString() + "->";
+
             while (cabezal < dtgCinta.Columns.Count - 1)
             {
                 cabezal++;
@@ -324,7 +378,7 @@
 
                 if (columnaActual < dtgCinta.Columns.Count - 1)
                 {
-                    if(cabezal-- < 0)
+                    if (cabezal-- < 0)
                     {
                         return;
                     }
@@ -520,12 +574,13 @@
 
         private void btnBuscarCadena_Click(object sender, EventArgs e)
         {
+
             char[] cadena;
             cadena = txtBuscarCadena.Text.ToCharArray();
             char[] cadenainv = cadena;
-            for(int i = cadena.Length-1; i>=0; i--)
+            for (int i = cadena.Length - 1; i >= 0; i--)
             {
-                for(int j = 0; j < cadena.Length; j++)
+                for (int j = 0; j < cadena.Length; j++)
                 {
                     cadenainv[j] = cadena[i];
                 }
@@ -538,18 +593,18 @@
                 //si es true volver a buscar el siguiente mandando el char que sigue
                 //dowhile
                 //si es false empezar desde el primer char otra vez
-                    for (int i = 0; i < cadenainv.Length; i++)
+                for (int i = 0; i < cadenainv.Length; i++)
+                {
+                    if (cabezal == 0)
                     {
-                        if (cabezal == 0)
-                        {
-                            MessageBox.Show("Ya no se puede ir a la izquierda, no se encontro", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return;
-                        }
-                        if (BuscarIzq(cadenainv[i]) != true)
-                        {
-                            i = 0;
-                        }
+                        MessageBox.Show("Ya no se puede ir a la izquierda, no se encontro", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
+                    if (BuscarIzq(cadenainv[i]) != true)
+                    {
+                        i = 0;
+                    }
+                }
             }
             else if (radBuscarCadDer.Checked == true)
             {
@@ -602,6 +657,124 @@
 
         private void txtAlfabeto_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+
+            if (txtAlfabeto.Text.ToLower().Contains(char.ToLower(e.KeyChar)))
+            {
+                e.Handled = true;
+                tpCadena.ToolTipIcon = ToolTipIcon.Warning;
+                tpCadena.ToolTipTitle = "Carácter no permitido";
+                tpCadena.Show("No se pueden repetir caracteres.", txtAlfabeto, 0, -45, 2000);
+            }
+        }
+
+        private void btnCopiarCad_Click(object sender, EventArgs e)
+        {
+
+            cadena = cadena.Concat(separacion).Concat(cadena).ToArray();
+
+            dtgCinta.Columns.Clear();
+            dtgCinta.Rows.Clear();
+            txtCompuesta.Clear();
+            txtMovimientos.Clear();
+
+            for (int i = 0; i < cadena.Length; i++)
+            {
+                dtgCinta.Columns.Add("Col" + i, i.ToString());
+
+                dtgCinta.Columns[i].Width = 40;
+            }
+            object[] filaEstructurada = cadena.Select(c => c.ToString()).ToArray();
+            dtgCinta.Rows.Add(filaEstructurada);
+
+            if (cbxPosicionIni.SelectedItem != null)
+            {
+                cabezal = int.Parse(cbxPosicionIni.SelectedItem.ToString());
+
+                dtgCinta.Focus();
+
+                dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[cabezal];
+
+                dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
+                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
+                MessageBox.Show("Cadena copiada.");
+
+                Limpiarcbx();
+                for (int i = 0; i < alfabeto.Length; i++)
+                {
+                    cbxBuscarSIgual.Items.Add((char)alfabeto[i]);
+                    cbxBuscarSDif.Items.Add((char)alfabeto[i]);
+                    cbxEliminar1SIgual.Items.Add((char)alfabeto[i]);
+                    cbxEliminarHasta.Items.Add((char)alfabeto[i]);
+                    cbxEliminarSDif.Items.Add((char)alfabeto[i]);
+                    cbxEliminarSIgual.Items.Add((char)alfabeto[i]);
+                    cbxEscribirSimb.Items.Add((char)alfabeto[i]);
+                }
+                cbxBuscarSIgual.Items.Add("Δ");
+                cbxBuscarSDif.Items.Add("Δ");
+                cbxEliminar1SIgual.Items.Add("Δ");
+                cbxEliminarHasta.Items.Add("Δ");
+                cbxEliminarSDif.Items.Add("Δ");
+                cbxEliminarSIgual.Items.Add("Δ");
+                cbxEscribirSimb.Items.Add("Δ");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            char[] cadenainv = (char[])cadena.Clone();
+            Array.Reverse(cadenainv);
+
+            cadena = cadena.Concat(separacion).Concat(cadenainv).ToArray();
+
+            dtgCinta.Columns.Clear();
+            dtgCinta.Rows.Clear();
+            txtCompuesta.Clear();
+            txtMovimientos.Clear();
+
+            for (int i = 0; i < cadena.Length; i++)
+            {
+                dtgCinta.Columns.Add("Col" + i, i.ToString());
+
+                dtgCinta.Columns[i].Width = 40;
+            }
+            object[] filaEstructurada = cadena.Select(c => c.ToString()).ToArray();
+            dtgCinta.Rows.Add(filaEstructurada);
+
+            if (cbxPosicionIni.SelectedItem != null)
+            {
+                cabezal = int.Parse(cbxPosicionIni.SelectedItem.ToString());
+
+                dtgCinta.Focus();
+
+                dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[cabezal];
+
+                dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
+                dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
+                MessageBox.Show("Cadena copiada.");
+
+                Limpiarcbx();
+                for (int i = 0; i < alfabeto.Length; i++)
+                {
+                    cbxBuscarSIgual.Items.Add((char)alfabeto[i]);
+                    cbxBuscarSDif.Items.Add((char)alfabeto[i]);
+                    cbxEliminar1SIgual.Items.Add((char)alfabeto[i]);
+                    cbxEliminarHasta.Items.Add((char)alfabeto[i]);
+                    cbxEliminarSDif.Items.Add((char)alfabeto[i]);
+                    cbxEliminarSIgual.Items.Add((char)alfabeto[i]);
+                    cbxEscribirSimb.Items.Add((char)alfabeto[i]);
+                }
+                cbxBuscarSIgual.Items.Add("Δ");
+                cbxBuscarSDif.Items.Add("Δ");
+                cbxEliminar1SIgual.Items.Add("Δ");
+                cbxEliminarHasta.Items.Add("Δ");
+                cbxEliminarSDif.Items.Add("Δ");
+                cbxEliminarSIgual.Items.Add("Δ");
+                cbxEscribirSimb.Items.Add("Δ");
+            }
 
         }
     }

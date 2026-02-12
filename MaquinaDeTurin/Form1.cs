@@ -324,20 +324,30 @@
 
                 if (columnaActual < dtgCinta.Columns.Count - 1)
                 {
-                    if(cabezal-- < 0)
+                    cabezal--;
+                    if (cabezal == 0)
                     {
+                        ActualizarCinta();
+                        await Task.Delay(500);
+                        if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
+                        {
+                            dtgCinta.CurrentCell.Value = blanco;
+                            txtCompuesta.Text += blanco + "->";
+                            txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
+                        }
+                        MessageBox.Show("Eliminados todos los " + simbolo + " del lado izquierdo");
                         return;
                     }
-                    cabezal--;
                     ActualizarCinta();
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
+                        txtCompuesta.Text += blanco + "->";
+                        txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                     }
                 }
             }
-            MessageBox.Show("Eliminados todos los " + simbolo + " del lado izquierdo");
         }
 
         private void btnEscribirSIzq_Click(object sender, EventArgs e)
@@ -376,6 +386,8 @@
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
+                        txtCompuesta.Text += blanco + "->";
+                        txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                     }
                 }
             }
@@ -398,10 +410,12 @@
                     if (dtgCinta.CurrentCell.Value.ToString() != simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
+                        txtCompuesta.Text += blanco + "->";
+                        txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                     }
                 }
             }
-            MessageBox.Show("Eliminados todos los diferentes de " + simbolo + " del lado derecho");
+            MessageBox.Show("Eliminados todos los simbolos diferentes de " + simbolo + " del lado derecho");
         }
 
         private async void btnEliminarDifIzq_Click(object sender, EventArgs e)
@@ -414,16 +428,30 @@
                 if (columnaActual < dtgCinta.Columns.Count - 1)
                 {
                     cabezal--;
+                    if (cabezal == 0)
+                    {
+                        ActualizarCinta();
+                        await Task.Delay(500);
+                        if (dtgCinta.CurrentCell.Value.ToString() != simbolo)
+                        {
+                            dtgCinta.CurrentCell.Value = blanco;
+                            txtCompuesta.Text += blanco + "->";
+                            txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
+                        }
+                        MessageBox.Show("Eliminados todos los simbolos diferentes de  " + simbolo + " del lado izquierdo");
+                        return;
+                    }
                     ActualizarCinta();
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() != simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
+                        txtCompuesta.Text += blanco + "->";
+                        txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                     }
 
                 }
             }
-            MessageBox.Show("Eliminados todos los diferentes de " + simbolo + " del lado izquierdo");
         }
 
         private async void btnEliminar1SIgualDer_Click(object sender, EventArgs e)
@@ -441,6 +469,8 @@
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
+                        txtCompuesta.Text += blanco + "->";
+                        txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                         MessageBox.Show("Se elimino el primer " + simbolo + ", que se encontro en la posicion " + cabezal + " del lado Derecho");
                         return;
                     }
@@ -484,6 +514,8 @@
                     cabezal++;
                     ActualizarCinta();
                     dtgCinta.CurrentCell.Value = blanco;
+                    txtCompuesta.Text += blanco + "->";
+                    txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
@@ -507,6 +539,8 @@
                     cabezal--;
                     ActualizarCinta();
                     dtgCinta.CurrentCell.Value = blanco;
+                    txtCompuesta.Text += blanco + "->";
+                    txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {

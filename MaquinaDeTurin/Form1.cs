@@ -68,27 +68,7 @@
 
                     dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
                     dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
-
-                    Limpiarcbx();
-                    for (int i = 0; i < alfabeto.Length; i++)
-                    {
-                        cbxBuscarSIgual.Items.Add((char)alfabeto[i]);
-                        cbxBuscarSDif.Items.Add((char)alfabeto[i]);
-                        cbxEliminar1SIgual.Items.Add((char)alfabeto[i]);
-                        cbxEliminarHasta.Items.Add((char)alfabeto[i]);
-                        cbxEliminarSDif.Items.Add((char)alfabeto[i]);
-                        cbxEliminarSIgual.Items.Add((char)alfabeto[i]);
-                        cbxEscribirSimb.Items.Add((char)alfabeto[i]);
-                    }
-                    cbxBuscarSIgual.Items.Add("Δ");
-                    cbxBuscarSDif.Items.Add("Δ");
-                    cbxEliminar1SIgual.Items.Add("Δ");
-                    cbxEliminarHasta.Items.Add("Δ");
-                    cbxEliminarSDif.Items.Add("Δ");
-                    cbxEliminarSIgual.Items.Add("Δ");
-                    cbxEscribirSimb.Items.Add("Δ");
                 }
-
             }
         }
 
@@ -286,11 +266,19 @@
             string compuesta = "D" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
             if (cabezal == cadena.Length - 1)
             {
-                txtCompuesta.Text += compuesta;
-                txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + (int.Parse(cabezal.ToString()) + 1) + "\r\n";
-                return;
-                //MessageBox.Show("Ya no se puede ir a la derecha", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //return;
+                if(cbxBuscarSIgual.Text == "Δ")
+                {
+                    moverDerecha();
+                    txtCompuesta.Text += compuesta;
+                    txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + (int.Parse(cabezal.ToString()) + 1) + "\r\n";
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Ya no se puede ir a la derecha, Problema de la parada", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
             }
 
             while (cabezal < dtgCinta.Columns.Count - 1)
@@ -347,11 +335,19 @@
             string compuesta = "D" + diferente + cbxBuscarSDif.Text.ToString() + "->";
             if (cabezal == cadena.Length - 1)
             {
-                txtCompuesta.Text += compuesta;
-                txtMovimientos.Text += "Se encontró " + blanco + " en la posición " + (int.Parse(cabezal.ToString()) + 1) + "\r\n";
-                return;
-                //MessageBox.Show("Ya no se puede ir a la derecha", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //return;
+                if (cbxBuscarSDif.Text == "Δ")
+                {
+                    MessageBox.Show("No se encontró a la derecha", "Cinta");
+                }
+                else
+                {
+                    moverDerecha();
+                    txtCompuesta.Text += compuesta;
+                    txtMovimientos.Text += "Se encontró un símbolo diferente a " + cbxBuscarSDif.Text.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
+                    return;
+                    //MessageBox.Show("Ya no se puede ir a la derecha", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //return;
+                }
             }
 
             while (cabezal < dtgCinta.Columns.Count - 1)
@@ -376,7 +372,8 @@
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
-                if (columnaActual < dtgCinta.Columns.Count - 1)
+                
+                if (columnaActual <= dtgCinta.Columns.Count - 1)
                 {
                     cabezal--;
                     if (cabezal == 0)
@@ -432,7 +429,7 @@
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
-                if (columnaActual < dtgCinta.Columns.Count - 1)
+                if (columnaActual <= dtgCinta.Columns.Count - 1)
                 {
                     cabezal++;
                     ActualizarCinta();
@@ -452,7 +449,7 @@
         private async void btnEliminarDifDer_Click(object sender, EventArgs e)
         {
             string simbolo = cbxEliminarSDif.Text;
-            while (cabezal < dtgCinta.Columns.Count - 1)
+            while (cabezal <= dtgCinta.Columns.Count - 1)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
@@ -479,7 +476,7 @@
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
-                if (columnaActual < dtgCinta.Columns.Count - 1)
+                if (columnaActual <= dtgCinta.Columns.Count - 1)
                 {
                     cabezal--;
                     if (cabezal == 0)
@@ -515,7 +512,7 @@
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
-                if (columnaActual < dtgCinta.Columns.Count - 1)
+                if (columnaActual <= dtgCinta.Columns.Count - 1)
                 {
                     cabezal++;
                     ActualizarCinta();
@@ -540,7 +537,7 @@
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
-                if (columnaActual < dtgCinta.Columns.Count - 1)
+                if (columnaActual <= dtgCinta.Columns.Count - 1)
                 {
                     cabezal--;
                     ActualizarCinta();
@@ -563,7 +560,7 @@
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
-                if (columnaActual < dtgCinta.Columns.Count - 1)
+                if (columnaActual <= dtgCinta.Columns.Count - 1)
                 {
                     cabezal++;
                     ActualizarCinta();
@@ -588,7 +585,7 @@
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
-                if (columnaActual < dtgCinta.Columns.Count - 1)
+                if (columnaActual <= dtgCinta.Columns.Count - 1)
                 {
                     cabezal--;
                     ActualizarCinta();

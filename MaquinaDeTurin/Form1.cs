@@ -213,10 +213,10 @@ namespace MaquinaDeTurin
                 }
                 cbxBuscarSIgual.Items.Add("Δ");
                 cbxBuscarSDif.Items.Add("Δ");
-                cbxEliminar1SIgual.Items.Add("Δ");
+                //cbxEliminar1SIgual.Items.Add("Δ");
                 cbxEliminarHasta.Items.Add("Δ");
                 cbxEliminarSDif.Items.Add("Δ");
-                cbxEliminarSIgual.Items.Add("Δ");
+                //cbxEliminarSIgual.Items.Add("Δ");
                 cbxEscribirSimb.Items.Add("Δ");
             }
             else
@@ -808,6 +808,13 @@ namespace MaquinaDeTurin
             {
                 return;
             }
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                e.Handled = true;
+                tpCadena.ToolTipIcon = ToolTipIcon.Warning;
+                tpCadena.ToolTipTitle = "Carácter no permitido";
+                tpCadena.Show("No se permiten espacios.", txtAlfabeto, 0, -45, 2000);
+            }
 
             if (txtAlfabeto.Text.ToLower().Contains(char.ToLower(e.KeyChar)))
             {
@@ -862,10 +869,10 @@ namespace MaquinaDeTurin
                 }
                 cbxBuscarSIgual.Items.Add("Δ");
                 cbxBuscarSDif.Items.Add("Δ");
-                cbxEliminar1SIgual.Items.Add("Δ");
+                //cbxEliminar1SIgual.Items.Add("Δ");
                 cbxEliminarHasta.Items.Add("Δ");
                 cbxEliminarSDif.Items.Add("Δ");
-                cbxEliminarSIgual.Items.Add("Δ");
+                //cbxEliminarSIgual.Items.Add("Δ");
                 cbxEscribirSimb.Items.Add("Δ");
             }
         }
@@ -916,10 +923,10 @@ namespace MaquinaDeTurin
                 }
                 cbxBuscarSIgual.Items.Add("Δ");
                 cbxBuscarSDif.Items.Add("Δ");
-                cbxEliminar1SIgual.Items.Add("Δ");
+                //cbxEliminar1SIgual.Items.Add("Δ");
                 cbxEliminarHasta.Items.Add("Δ");
                 cbxEliminarSDif.Items.Add("Δ");
-                cbxEliminarSIgual.Items.Add("Δ");
+                //cbxEliminarSIgual.Items.Add("Δ");
                 cbxEscribirSimb.Items.Add("Δ");
             }
 

@@ -1,4 +1,6 @@
-﻿namespace MaquinaDeTurin
+﻿using System.Threading.Tasks;
+
+namespace MaquinaDeTurin
 {
     public partial class Form1 : Form
     {
@@ -9,6 +11,7 @@
         string subindice = ".";
         string diferente = "!";
         string blanco = "Δ";
+        string simbguardado = "";
 
         public void moverIzquierda()
         {
@@ -95,6 +98,19 @@
             dtgCinta.CurrentCell = dtgCinta.Rows[0].Cells[cabezal];
             dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
             dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
+        }
+        public void RehacerCinta()
+        {
+            dtgCinta.Columns.Clear();
+            dtgCinta.Rows.Clear();
+            for (int i = 0; i < cadena.Length; i++)
+            {
+                dtgCinta.Columns.Add("Col" + i, i.ToString());
+
+                dtgCinta.Columns[i].Width = 40;
+            }
+            object[] filaEstructurada = cadena.Select(c => c.ToString()).ToArray();
+            dtgCinta.Rows.Add(filaEstructurada);
         }
 
         private void txtCadena_TextChanged(object sender, EventArgs e)
@@ -239,6 +255,23 @@
                 return;
             }
             string compuesta = "I" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
+            /*/ Para que no se mueva el cabezal si hay terminación anormal
+            bool terminacion = true;
+            for(int i = cabezal; i > 0;  i--)
+            {
+                if (cadena[i-1].ToString() == cbxBuscarSIgual.Text)
+                {
+                    terminacion = false;
+                }
+            }
+            if (terminacion)
+            {
+                MessageBox.Show("Terminación anormal", "Problema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            /// --------------------------------------------------------- */
+
+
             while (cabezal >= 0)
             {
                 cabezal--;
@@ -250,6 +283,12 @@
                     txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
                     return;
                 }
+                else if (cabezal == 0) // Para mover el cabezar pero detenerse en terminación anormal
+                {
+                    MessageBox.Show("Terminación anormal", "Problema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                /// ------------------------------------------------------------------------------------
             }
             MessageBox.Show("El símbolo no se encontró a la izquierda", "Cinta");
 
@@ -266,7 +305,7 @@
             string compuesta = "D" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
             if (cabezal == cadena.Length - 1)
             {
-                if(cbxBuscarSIgual.Text == "Δ")
+                if (cbxBuscarSIgual.Text == "Δ")
                 {
                     moverDerecha();
                     txtCompuesta.Text += compuesta;
@@ -275,7 +314,7 @@
                 }
                 else
                 {
-                    MessageBox.Show("Ya no se puede ir a la derecha, Problema de la parada", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Problema de la parada", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -293,7 +332,7 @@
                     return;
                 }
             }
-            MessageBox.Show("El símbolo no se encontró a la derecha", "Cinta");
+            MessageBox.Show("El símbolo no se encontró a la derecha. Problema de la parada", "Cinta");
         }
 
         private async void btnBuscarDifIzq_Click(object sender, EventArgs e)
@@ -368,48 +407,77 @@
         private async void btnEliminarIgualIzq_Click(object sender, EventArgs e)
         {
             string simbolo = cbxEliminarSIgual.Text;
+            int cont = 0;
             while (cabezal >= 0)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
-                
+
                 if (columnaActual <= dtgCinta.Columns.Count - 1)
                 {
-                    cabezal--;
+                    if (cabezal > 0)
+                        cabezal--;
                     if (cabezal == 0)
                     {
                         ActualizarCinta();
                         await Task.Delay(500);
                         if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                         {
+                            cont++;
                             dtgCinta.CurrentCell.Value = blanco;
                             txtCompuesta.Text += blanco + "->";
                             txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                         }
-                        MessageBox.Show("Eliminados todos los " + simbolo + " del lado izquierdo");
+                        if (cont > 0)
+                            MessageBox.Show("Eliminados todos los " + simbolo + " del lado izquierdo");
+                        else
+                            MessageBox.Show("No se borró ningun símbolo");
                         return;
                     }
                     ActualizarCinta();
+                    txtCompuesta.Text += "I->";
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
+                        cont++;
                         dtgCinta.CurrentCell.Value = blanco;
                         txtCompuesta.Text += blanco + "->";
                         txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                     }
                 }
             }
+            if (cont > 0)
+            {
+                MessageBox.Show("Eliminados todos los " + simbolo + " del lado derecho");
+            }
+            else
+            {
+                MessageBox.Show("No se borró ningun simbolo");
+            }
         }
 
         private void btnEscribirSIzq_Click(object sender, EventArgs e)
         {
+            /*/ Método diferente
             string simbolo = cbxEscribirSimb.Text;
             dtgCinta.CurrentCell.Value = simbolo;
             txtCompuesta.Text += simbolo + "->";
             txtMovimientos.Text += "Se escribio el simbolo " + simbolo + " en la posición " + cabezal.ToString() + "\r\n";
             moverIzquierda();
             MessageBox.Show("Simbolo " + simbolo + " escrito correctamente");
+            /// ------------------------------------------------------------------------------------------------------------- */
 
+            if (cbxEscribirSimb.Text.ToString() == "")
+            {
+                MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            cadena[cabezal] = char.Parse(cbxEscribirSimb.Text);
+            RehacerCinta();
+            ActualizarCinta();
+            string compuesta = cbxEscribirSimb.Text.ToString() + "->";
+            txtCompuesta.Text += compuesta;
+            txtMovimientos.Text += "Se escribió " + cbxEscribirSimb.Text.ToString() + " en la posición " + cabezal + "\r\n";
         }
 
         private void btnEscribirSDer_Click(object sender, EventArgs e)
@@ -425,6 +493,7 @@
         private async void btnEliminarIgualDer_Click(object sender, EventArgs e)
         {
             string simbolo = cbxEliminarSIgual.Text;
+            int cont = 0;
             while (cabezal < dtgCinta.Columns.Count - 1)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
@@ -433,22 +502,32 @@
                 {
                     cabezal++;
                     ActualizarCinta();
+                    txtCompuesta.Text += "D->";
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
+                        cont++;
                         dtgCinta.CurrentCell.Value = blanco;
                         txtCompuesta.Text += blanco + "->";
                         txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                     }
                 }
             }
-            MessageBox.Show("Eliminados todos los " + simbolo + " del lado derecho");
+            if (cont > 0)
+            {
+                MessageBox.Show("Eliminados todos los " + simbolo + " del lado derecho");
+            }
+            else
+            {
+                MessageBox.Show("No se borró ningun simbolo");
+            }
 
         }
 
         private async void btnEliminarDifDer_Click(object sender, EventArgs e)
         {
             string simbolo = cbxEliminarSDif.Text;
+            int cont = 0;
             while (cabezal <= dtgCinta.Columns.Count - 1)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
@@ -457,13 +536,23 @@
                 {
                     cabezal++;
                     ActualizarCinta();
+                    txtCompuesta.Text += "D->";
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() != simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
+                        cont++;
                         txtCompuesta.Text += blanco + "->";
                         txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                     }
+                }
+                if (columnaActual == dtgCinta.Columns.Count - 1)
+                {
+                    if (cont > 0)
+                        MessageBox.Show("Se eliminaron los símbolos diferentes de " + simbolo + " del lado derecho");
+                    else
+                        MessageBox.Show("No se eliminó níngun símbolo");
+                    return;
                 }
             }
             MessageBox.Show("Eliminados todos los simbolos diferentes de " + simbolo + " del lado derecho");
@@ -472,30 +561,39 @@
         private async void btnEliminarDifIzq_Click(object sender, EventArgs e)
         {
             string simbolo = cbxEliminarSDif.Text;
+            int cont = 0;
             while (cabezal >= 0)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
                 if (columnaActual <= dtgCinta.Columns.Count - 1)
                 {
-                    cabezal--;
+                    if (cabezal > 0)
+                        cabezal--;
                     if (cabezal == 0)
                     {
                         ActualizarCinta();
+                        txtCompuesta.Text += "I->";
                         await Task.Delay(500);
                         if (dtgCinta.CurrentCell.Value.ToString() != simbolo)
                         {
+                            cont++;
                             dtgCinta.CurrentCell.Value = blanco;
                             txtCompuesta.Text += blanco + "->";
                             txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                         }
-                        MessageBox.Show("Eliminados todos los simbolos diferentes de  " + simbolo + " del lado izquierdo");
+                        if (cont > 0)
+                            MessageBox.Show("Eliminados todos los simbolos diferentes de  " + simbolo + " del lado izquierdo");
+                        else
+                            MessageBox.Show("No se borró ningún símbolo");
                         return;
                     }
                     ActualizarCinta();
+                    txtCompuesta.Text += "I->";
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() != simbolo)
                     {
+                        cont++;
                         dtgCinta.CurrentCell.Value = blanco;
                         txtCompuesta.Text += blanco + "->";
                         txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
@@ -503,6 +601,10 @@
 
                 }
             }
+            if (cont > 0)
+                MessageBox.Show("Eliminados todos los símbolos diferentes de " + simbolo + " del lado izquierdo");
+            else
+                MessageBox.Show("No se borró ningún simbolo");
         }
 
         private async void btnEliminar1SIgualDer_Click(object sender, EventArgs e)
@@ -516,6 +618,7 @@
                 {
                     cabezal++;
                     ActualizarCinta();
+                    txtCompuesta.Text += "D->";
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
@@ -528,6 +631,11 @@
 
                 }
             }
+            if (cabezal == dtgCinta.Columns.Count - 1)
+            {
+                MessageBox.Show("Problema de la parada, no se encuentra ningún símbolo igual");
+                return;
+            }
         }
 
         private async void btnEliminar1SIgualIzq_Click(object sender, EventArgs e)
@@ -537,18 +645,26 @@
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
 
-                if (columnaActual <= dtgCinta.Columns.Count - 1)
+                if (columnaActual > 0)
                 {
                     cabezal--;
                     ActualizarCinta();
+                    txtCompuesta.Text += "I->";
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
+                        txtCompuesta.Text += blanco + "->";
+                        txtMovimientos.Text += "Se escribió el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                         MessageBox.Show("Se elimino el primer " + simbolo + ", que se encontro en la posicion " + cabezal + " del lado Izquierdo");
                         return;
                     }
 
+                }
+                else
+                {
+                    MessageBox.Show("Terminación anormal, no se encontró ningún símbolo igual");
+                    return;
                 }
             }
         }
@@ -807,6 +923,77 @@
                 cbxEscribirSimb.Items.Add("Δ");
             }
 
+        }
+
+        private void btnGuardarS_Click(object sender, EventArgs e)
+        {
+            simbguardado = dtgCinta.CurrentCell.Value.ToString();
+            string compuesta = simbguardado + "->}σ->";
+            txtCompuesta.Text = compuesta;
+        }
+
+        private void btnSobrescribir_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(simbguardado))
+            {
+                MessageBox.Show("No hay símbolo guardado", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            cadena[cabezal] = char.Parse(simbguardado);
+            RehacerCinta();
+            ActualizarCinta();
+            string compuesta = simbguardado + "->";
+            txtCompuesta.Text += compuesta;
+            txtMovimientos.Text += "Se sobrescribió " + simbguardado + " en la posición " + cabezal.ToString() + "\r\n";
+        }
+
+        private async void btnBorrarCadIzq_Click(object sender, EventArgs e)
+        {
+            if (cabezal == 0)
+            {
+                MessageBox.Show("Terminación anormal", "Cinta");
+                return;
+            }
+            string compuesta = "";
+            for (int i = cabezal; i >= 0; i--)
+            {
+                txtCompuesta.Text += "Δ->";
+                if (i > 0)
+                    txtCompuesta.Text += "I->";
+                cadena[i] = 'Δ';
+                cabezal = i;
+                RehacerCinta();
+                ActualizarCinta();
+                await Task.Delay(500);
+            }
+            RehacerCinta();
+            ActualizarCinta();
+            txtMovimientos.Text += "Se eliminó la cadena hacia la izquierda\r\n";
+        }
+
+        private async void btnBorrarCadDer_Click(object sender, EventArgs e)
+        {
+            if (cabezal == cadena.Length - 1)
+            {
+                MessageBox.Show("No se puede ir a la derecha", "Cinta");
+                return;
+            }
+            string compuesta = "";
+            for (int i = cabezal; i <= cadena.Length - 1; i++)
+            {
+                txtCompuesta.Text += "Δ->";
+                if (i < cadena.Length - 1)
+                    compuesta += "D->";
+                cadena[i] = 'Δ';
+                cabezal = i;
+                RehacerCinta();
+                ActualizarCinta();
+                await Task.Delay(500);
+            }
+            RehacerCinta();
+            ActualizarCinta();
+            txtMovimientos.Text += "Se eliminó la cadena hacia la derecha\r\n";
         }
     }
 }

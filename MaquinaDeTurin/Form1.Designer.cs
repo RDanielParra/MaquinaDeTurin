@@ -93,6 +93,9 @@
             txtMovimientos = new TextBox();
             label6 = new Label();
             tpCadena = new ToolTip(components);
+            btnMarcar = new Button();
+            btnVolverAMarca = new Button();
+            btnDesmarcar = new Button();
             gbxDatosMT.SuspendLayout();
             gbxOperaciones.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -379,7 +382,7 @@
             // 
             // btnEliminarHastaDer
             // 
-            btnEliminarHastaDer.BackColor = SystemColors.Highlight;
+            btnEliminarHastaDer.BackColor = SystemColors.ActiveCaption;
             btnEliminarHastaDer.Location = new Point(610, 221);
             btnEliminarHastaDer.Margin = new Padding(2, 4, 2, 4);
             btnEliminarHastaDer.Name = "btnEliminarHastaDer";
@@ -391,7 +394,7 @@
             // 
             // btnEliminarHastaIzq
             // 
-            btnEliminarHastaIzq.BackColor = SystemColors.Highlight;
+            btnEliminarHastaIzq.BackColor = SystemColors.ActiveCaption;
             btnEliminarHastaIzq.Location = new Point(516, 221);
             btnEliminarHastaIzq.Margin = new Padding(2, 4, 2, 4);
             btnEliminarHastaIzq.Name = "btnEliminarHastaIzq";
@@ -855,11 +858,49 @@
             label6.TabIndex = 9;
             label6.Text = "Movimientos";
             // 
+            // btnMarcar
+            // 
+            btnMarcar.BackColor = SystemColors.ActiveCaption;
+            btnMarcar.Location = new Point(1010, 477);
+            btnMarcar.Name = "btnMarcar";
+            btnMarcar.Size = new Size(112, 34);
+            btnMarcar.TabIndex = 11;
+            btnMarcar.Text = "Marcar";
+            btnMarcar.UseVisualStyleBackColor = false;
+            btnMarcar.Click += btnMarcar_Click;
+            // 
+            // btnVolverAMarca
+            // 
+            btnVolverAMarca.BackColor = SystemColors.ActiveCaption;
+            btnVolverAMarca.Enabled = false;
+            btnVolverAMarca.Location = new Point(1128, 477);
+            btnVolverAMarca.Name = "btnVolverAMarca";
+            btnVolverAMarca.Size = new Size(142, 34);
+            btnVolverAMarca.TabIndex = 12;
+            btnVolverAMarca.Text = "Volver a marca";
+            btnVolverAMarca.UseVisualStyleBackColor = false;
+            btnVolverAMarca.Click += btnVolverAMarca_Click;
+            // 
+            // btnDesmarcar
+            // 
+            btnDesmarcar.BackColor = SystemColors.ActiveCaption;
+            btnDesmarcar.Enabled = false;
+            btnDesmarcar.Location = new Point(1276, 478);
+            btnDesmarcar.Name = "btnDesmarcar";
+            btnDesmarcar.Size = new Size(112, 34);
+            btnDesmarcar.TabIndex = 13;
+            btnDesmarcar.Text = "Desmarcar";
+            btnDesmarcar.UseVisualStyleBackColor = false;
+            btnDesmarcar.Click += btnDesmarcar_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1506, 791);
+            Controls.Add(btnDesmarcar);
+            Controls.Add(btnVolverAMarca);
+            Controls.Add(btnMarcar);
             Controls.Add(txtMovimientos);
             Controls.Add(label6);
             Controls.Add(button5);
@@ -952,5 +993,8 @@
         private TextBox txtMovimientos;
         private Label label6;
         private ToolTip tpCadena;
+        private Button btnMarcar;
+        private Button btnVolverAMarca;
+        private Button btnDesmarcar;
     }
 }

@@ -12,6 +12,8 @@ namespace MaquinaDeTurin
         string diferente = "!";
         string blanco = "Δ";
         string simbguardado = "";
+        char inicial = ' ';
+        int imarca = 0;
 
         public void moverIzquierda()
         {
@@ -991,7 +993,7 @@ namespace MaquinaDeTurin
             {
                 txtCompuesta.Text += "Δ->";
                 if (i < cadena.Length - 1)
-                    compuesta += "D->";
+                    txtCompuesta.Text += "D->";
                 cadena[i] = 'Δ';
                 cabezal = i;
                 RehacerCinta();
@@ -1001,6 +1003,89 @@ namespace MaquinaDeTurin
             RehacerCinta();
             ActualizarCinta();
             txtMovimientos.Text += "Se eliminó la cadena hacia la derecha\r\n";
+        }
+
+        private async void btnBorrarCadena_Click(object sender, EventArgs e)
+        {
+            inicial = cadena[cabezal];
+            imarca = cabezal;
+            cadena[cabezal] = '*';
+            dtgCinta.CurrentCell.Value = '*';
+            txtCompuesta.Text += "*->";
+            if (cabezal != 0)
+            {
+
+                for (int i = cabezal - 1; i >= 0; i--)
+                {
+
+                    cabezal--;
+                    txtCompuesta.Text += "I->";
+                    txtCompuesta.Text += blanco + "->";
+                    cadena[i] = char.Parse(blanco);
+                    ActualizarCinta();
+                    dtgCinta.CurrentCell.Value = blanco;
+                    await Task.Delay(500);
+                }
+                txtCompuesta.Text += "D.*->";
+                cabezal++;
+                ActualizarCinta();
+                await Task.Delay(500);
+            }
+            for (int i = cabezal + 1; i <= cadena.Length - 1; i++)
+            {
+                if (cabezal >= imarca)
+                {
+                    cabezal++;
+                    txtCompuesta.Text += "D->";
+                }
+                else
+                {
+                    cabezal++;
+                }
+                ActualizarCinta();
+
+                if (cadena[i] != '*' && cadena[i] != char.Parse(blanco))
+                {
+                    cadena[i] = char.Parse(blanco);
+                    ActualizarCinta();
+                    dtgCinta.CurrentCell.Value = blanco;
+                    txtCompuesta.Text += blanco + "->";
+                }
+                else if (cadena[i] == '*' && cabezal == cadena.Length - 1)
+                {
+                    cadena[i] = char.Parse(blanco);
+                    ActualizarCinta();
+                    dtgCinta.CurrentCell.Value = blanco;
+                    txtCompuesta.Text += blanco + "->";
+                    txtMovimientos.Text += "Se eliminaron todos los símbolos de la cadena\r\n";
+                    MessageBox.Show("Se borró la cadena");
+                    inicial = ' ';
+                    imarca = 0;
+                    return;
+                }
+
+                ActualizarCinta();
+                await Task.Delay(500);
+            }
+            txtCompuesta.Text += "I.*->";
+            for (int i = cabezal - 1; i >= 0; i--)
+            {
+                cabezal--;
+                ActualizarCinta();
+                if (cadena[i] == '*')
+                {
+                    cadena[i] = char.Parse(blanco);
+                    ActualizarCinta();
+                    dtgCinta.CurrentCell.Value = blanco;
+                    txtCompuesta.Text += blanco + "->";
+                    txtMovimientos.Text += "Se eliminaron todos los símbolos de la cadena\r\n";
+                    MessageBox.Show("Se borró la cadena");
+                    inicial = ' ';
+                    imarca = 0;
+                    return;
+                }
+                await Task.Delay(500);
+            }
         }
     }
 }

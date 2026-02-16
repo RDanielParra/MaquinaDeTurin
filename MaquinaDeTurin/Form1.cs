@@ -174,7 +174,7 @@ namespace MaquinaDeTurin
             }
             MessageBox.Show("Cadena capturada correctamente!");
             cbxPosicionIni.Focus();
-            
+
             button2.Enabled = true;
         }
 
@@ -245,21 +245,19 @@ namespace MaquinaDeTurin
             btnBuscarIgualIzq.Enabled = true;
             btnCapturarCadena.Enabled = true;
             btnCopiarCad.Enabled = true;
-            btnDesmarcar.Enabled = true;
             btnEliminar1SIgualDer.Enabled = true;
-            btnEliminar1SIgualIzq.Enabled=true;
-            btnEliminarDifDer.Enabled=true;
-            btnEliminarDifIzq.Enabled=true;
-            btnEliminarHastaDer.Enabled=true;
-            btnEliminarHastaIzq.Enabled=true;
-            btnEliminarIgualDer.Enabled=true;
+            btnEliminar1SIgualIzq.Enabled = true;
+            btnEliminarDifDer.Enabled = true;
+            btnEliminarDifIzq.Enabled = true;
+            btnEliminarHastaDer.Enabled = true;
+            btnEliminarHastaIzq.Enabled = true;
+            btnEliminarIgualDer.Enabled = true;
             btnEliminarIgualIzq.Enabled = true;
             btnEscribirSDer.Enabled = true;
             btnEscribirSIzq.Enabled = true;
             btnGuardarS.Enabled = true;
             btnMarcar.Enabled = true;
             btnSobrescribir.Enabled = true;
-            btnVolverAMarca.Enabled = true;
             button3.Enabled = true;
             button4.Enabled = true;
             button5.Enabled = true;
@@ -597,7 +595,7 @@ namespace MaquinaDeTurin
                             txtCompuesta.Text += "D." + simbolo + "->";
                         }
                     }
-                    
+
                 }
             }
             if (cont > 0)
@@ -638,7 +636,7 @@ namespace MaquinaDeTurin
                         cont++;
                         txtCompuesta.Text += blanco + "->";
                         txtMovimientos.Text += "Se escribió el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
-                        if(cabezal <  dtgCinta.Columns.Count - 1)
+                        if (cabezal < dtgCinta.Columns.Count - 1)
                         {
                             txtCompuesta.Text += "D!" + simbolo + "->";
                         }
@@ -767,7 +765,7 @@ namespace MaquinaDeTurin
                 {
                     cabezal--;
                     ActualizarCinta();
-                    
+
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
@@ -799,7 +797,7 @@ namespace MaquinaDeTurin
             while (cabezal <= dtgCinta.Columns.Count - 1)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
-                if(cabezal == dtgCinta.Columns.Count - 1)
+                if (cabezal == dtgCinta.Columns.Count - 1)
                 {
                     MessageBox.Show("Problema de la parada");
                     return;
@@ -849,7 +847,7 @@ namespace MaquinaDeTurin
                         return;
                     }
                     dtgCinta.CurrentCell.Value = blanco;
-                    cadena[cabezal]=char.Parse(blanco);
+                    cadena[cabezal] = char.Parse(blanco);
                     txtCompuesta.Text += "I->";
                     txtCompuesta.Text += blanco + "->";
                     txtMovimientos.Text += "Se escribió el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
@@ -1236,6 +1234,7 @@ namespace MaquinaDeTurin
             btnMarcar.Enabled = false;
             btnDesmarcar.Enabled = true;
             btnVolverAMarca.Enabled = true;
+            btnEliminarHastaMarca.Enabled = true;
         }
 
         private async void btnVolverAMarca_Click(object sender, EventArgs e)
@@ -1281,7 +1280,7 @@ namespace MaquinaDeTurin
         {
             if (marcado)
             {
-                if(dtgCinta.CurrentCell.Value.ToString() == "*")
+                if (dtgCinta.CurrentCell.Value.ToString() == "*")
                 {
                     dtgCinta.CurrentCell.Value = cadena[cabezal].ToString();
                     txtCompuesta.Text += cadena[cabezal] + "->";
@@ -1293,6 +1292,7 @@ namespace MaquinaDeTurin
                     btnDesmarcar.Enabled = false;
                     inicial = ' ';
                     btnVolverAMarca.Enabled = false;
+                    btnEliminarHastaMarca.Enabled = false;
                     return;
                 }
                 else
@@ -1303,6 +1303,61 @@ namespace MaquinaDeTurin
             else
             {
                 MessageBox.Show("Primero tiene que marcar la cinta");
+            }
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            if (direccion == 0 || imarca == cabezal)
+            {
+                MessageBox.Show("Ya se encuentra en la marca");
+                return;
+            }
+            else if (direccion == 1)
+            {
+                txtCompuesta.Text += "I.*->";
+                for (int i = cabezal - 1; i > imarca; i--)
+                {
+                    cabezal--;
+                    if (dtgCinta.CurrentCell.Value.ToString() == blanco)
+                    {
+                        dtgCinta.CurrentCell.Value = blanco;
+                        cadena[cabezal] = char.Parse(blanco);
+                        txtCompuesta.Text += blanco + "->";
+                        txtMovimientos.Text += "Se escribió el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
+                        return;
+                    }
+                    ActualizarCinta();
+                    await Task.Delay(500);
+                }
+                cabezal--;
+                ActualizarCinta();
+                txtMovimientos.Text += "El cabezal regresó a la posición" + cabezal + " marcada con *\r\n";
+                MessageBox.Show("El cabezal regreso a la marca *");
+                return;
+            }
+            else if (direccion == -1)
+            {
+                txtCompuesta.Text += "D.*->";
+                for (int i = cabezal + 1; i < imarca; i++)
+                {
+                    cabezal++;
+                    if (dtgCinta.CurrentCell.Value.ToString() == blanco)
+                    {
+                        dtgCinta.CurrentCell.Value = blanco;
+                        cadena[cabezal] = char.Parse(blanco);
+                        txtCompuesta.Text += blanco + "->";
+                        txtMovimientos.Text += "Se escribió el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
+                        return;
+                    }
+                    ActualizarCinta();
+                    await Task.Delay(500);
+                }
+                cabezal++;
+                ActualizarCinta();
+                txtMovimientos.Text += "El cabezal regresó a la posición" + cabezal + " marcada con *\r\n";
+                MessageBox.Show("El cabezal regresó a la marca *");
+                return;
             }
         }
     }

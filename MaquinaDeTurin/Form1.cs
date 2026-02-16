@@ -684,7 +684,14 @@ namespace MaquinaDeTurin
 
         private async void btnEliminar1SIgualDer_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cbxEliminar1SIgual.Text))
+            {
+                MessageBox.Show("Seleccione un símbolo");
+                return;
+            }
+
             string simbolo = cbxEliminar1SIgual.Text;
+            txtCompuesta.Text += "D." + simbolo + "->";
             while (cabezal < dtgCinta.Columns.Count - 1)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
@@ -693,7 +700,6 @@ namespace MaquinaDeTurin
                 {
                     cabezal++;
                     ActualizarCinta();
-                    txtCompuesta.Text += "D->";
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
@@ -716,7 +722,13 @@ namespace MaquinaDeTurin
 
         private async void btnEliminar1SIgualIzq_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cbxEliminar1SIgual.Text))
+            {
+                MessageBox.Show("Seleccione un símbolo");
+                return;
+            }
             string simbolo = cbxEliminar1SIgual.Text;
+            txtCompuesta.Text += "I." + simbolo + "->";
             while (cabezal >= 0)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
@@ -725,7 +737,7 @@ namespace MaquinaDeTurin
                 {
                     cabezal--;
                     ActualizarCinta();
-                    txtCompuesta.Text += "I->";
+                    
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {

@@ -174,6 +174,8 @@ namespace MaquinaDeTurin
             }
             MessageBox.Show("Cadena capturada correctamente!");
             cbxPosicionIni.Focus();
+            
+            button2.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -233,6 +235,34 @@ namespace MaquinaDeTurin
             {
                 MessageBox.Show("Por favor, capture una cadena y seleccione una posición inicial.");
             }
+            btnBorrarCadDer.Enabled = true;
+            btnBorrarCadena.Enabled = true;
+            btnBorrarCadIzq.Enabled = true;
+            btnBuscarCadena.Enabled = true;
+            btnBuscarDifDer.Enabled = true;
+            btnBuscarDifIzq.Enabled = true;
+            btnBuscarIgualDer.Enabled = true;
+            btnBuscarIgualIzq.Enabled = true;
+            btnCapturarCadena.Enabled = true;
+            btnCopiarCad.Enabled = true;
+            btnDesmarcar.Enabled = true;
+            btnEliminar1SIgualDer.Enabled = true;
+            btnEliminar1SIgualIzq.Enabled=true;
+            btnEliminarDifDer.Enabled=true;
+            btnEliminarDifIzq.Enabled=true;
+            btnEliminarHastaDer.Enabled=true;
+            btnEliminarHastaIzq.Enabled=true;
+            btnEliminarIgualDer.Enabled=true;
+            btnEliminarIgualIzq.Enabled = true;
+            btnEscribirSDer.Enabled = true;
+            btnEscribirSIzq.Enabled = true;
+            btnGuardarS.Enabled = true;
+            btnMarcar.Enabled = true;
+            btnSobrescribir.Enabled = true;
+            btnVolverAMarca.Enabled = true;
+            button3.Enabled = true;
+            button4.Enabled = true;
+            button5.Enabled = true;
         }
 
         private void button5_Click(object sender, EventArgs e)

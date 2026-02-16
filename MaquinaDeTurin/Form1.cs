@@ -32,7 +32,7 @@ namespace MaquinaDeTurin
             }
             else
             {
-                MessageBox.Show("Has llegado al inicio de la cinta (Izquierda).");
+                MessageBox.Show("Has llegado al inicio de la cinta (Izquierda). Terminación anormal");
             }
         }
 
@@ -210,7 +210,7 @@ namespace MaquinaDeTurin
 
                 dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
                 dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
-                MessageBox.Show("Maquina de Turing encendida.");
+                MessageBox.Show("Máquina de Turing encendida.");
 
                 Limpiarcbx();
                 for (int i = 0; i < alfabeto.Length; i++)
@@ -319,7 +319,7 @@ namespace MaquinaDeTurin
             }
             if (cabezal == 0)
             {
-                MessageBox.Show("Ya no se puede ir a la izquierda, Terminacion Anormal", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ya no se puede ir a la izquierda, Terminación Anormal", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             string compuesta = "I" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
@@ -412,7 +412,7 @@ namespace MaquinaDeTurin
             }
             if (cabezal <= 0)
             {
-                MessageBox.Show("Ya no se puede ir a la izquierda, Terminacion Anormal", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ya no se puede ir a la izquierda, Terminación Anormal", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             string compuesta = "I" + diferente + cbxBuscarSDif.Text.ToString() + "->";
@@ -501,7 +501,7 @@ namespace MaquinaDeTurin
                             dtgCinta.CurrentCell.Value = blanco;
                             cadena[cabezal] = char.Parse(blanco);
                             txtCompuesta.Text += blanco + "->";
-                            txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
+                            txtMovimientos.Text += "Se escribio el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                         }
                         if (cont > 0)
                             MessageBox.Show("Eliminados todos los " + simbolo + " del lado izquierdo");
@@ -517,7 +517,7 @@ namespace MaquinaDeTurin
                         dtgCinta.CurrentCell.Value = blanco;
                         cadena[cabezal] = char.Parse(blanco);
                         txtCompuesta.Text += blanco + "->";
-                        txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
+                        txtMovimientos.Text += "Se escribio el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                         txtCompuesta.Text += "I." + simbolo + "->";
                     }
                 }
@@ -528,7 +528,7 @@ namespace MaquinaDeTurin
             }
             else
             {
-                MessageBox.Show("No se borró ningun simbolo");
+                MessageBox.Show("No se borró ningun símbolo");
             }
         }
 
@@ -561,9 +561,9 @@ namespace MaquinaDeTurin
             string simbolo = cbxEscribirSimb.Text;
             dtgCinta.CurrentCell.Value = simbolo;
             txtCompuesta.Text += simbolo + "->";
-            txtMovimientos.Text += "Se escribio el simbolo " + simbolo + " en la posición " + cabezal.ToString() + "\r\n";
+            txtMovimientos.Text += "Se escribio el símbolo " + simbolo + " en la posición " + cabezal.ToString() + "\r\n";
             moverDerecha();
-            MessageBox.Show("Simbolo " + simbolo + " escrito correctamente");
+            MessageBox.Show("Símbolo " + simbolo + " escrito correctamente");
         }
 
         private async void btnEliminarIgualDer_Click(object sender, EventArgs e)
@@ -591,7 +591,7 @@ namespace MaquinaDeTurin
                         dtgCinta.CurrentCell.Value = blanco;
                         cadena[cabezal] = char.Parse(blanco);
                         txtCompuesta.Text += blanco + "->";
-                        txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
+                        txtMovimientos.Text += "Se escribio el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                         if (cabezal < dtgCinta.Columns.Count - 1)
                         {
                             txtCompuesta.Text += "D." + simbolo + "->";
@@ -606,7 +606,7 @@ namespace MaquinaDeTurin
             }
             else
             {
-                MessageBox.Show("No se borró ningun simbolo");
+                MessageBox.Show("No se borró ningun símbolo");
             }
 
         }
@@ -637,7 +637,7 @@ namespace MaquinaDeTurin
                         cadena[cabezal] = char.Parse(blanco);
                         cont++;
                         txtCompuesta.Text += blanco + "->";
-                        txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
+                        txtMovimientos.Text += "Se escribió el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                         if(cabezal <  dtgCinta.Columns.Count - 1)
                         {
                             txtCompuesta.Text += "D!" + simbolo + "->";
@@ -647,13 +647,13 @@ namespace MaquinaDeTurin
                 if (columnaActual == dtgCinta.Columns.Count - 1)
                 {
                     if (cont > 0)
-                        MessageBox.Show("Se eliminaron los símbolos diferentes de " + simbolo + " del lado derecho. Se detecto un problema de la parada al buscar más a la derecha");
+                        MessageBox.Show("Se eliminaron los símbolos diferentes de " + simbolo + " del lado derecho. Se detectó un problema de la parada al buscar más a la derecha");
                     else
-                        MessageBox.Show("No se eliminó níngun símbolo");
+                        MessageBox.Show("No se eliminó ningún símbolo");
                     return;
                 }
             }
-            MessageBox.Show("Eliminados todos los simbolos diferentes de " + simbolo + " del lado derecho");
+            MessageBox.Show("Eliminados todos los símbolos diferentes de " + simbolo + " del lado derecho");
         }
 
         private async void btnEliminarDifIzq_Click(object sender, EventArgs e)
@@ -684,10 +684,10 @@ namespace MaquinaDeTurin
                             dtgCinta.CurrentCell.Value = blanco;
                             cadena[cabezal] = char.Parse(blanco);
                             txtCompuesta.Text += blanco + "->";
-                            txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
+                            txtMovimientos.Text += "Se escribió el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                         }
                         if (cont > 0)
-                            MessageBox.Show("Eliminados todos los simbolos diferentes de  " + simbolo + " del lado izquierdo");
+                            MessageBox.Show("Eliminados todos los símbolos diferentes de  " + simbolo + " del lado izquierdo");
                         else
                             MessageBox.Show("No se borró ningún símbolo");
                         return;
@@ -700,7 +700,7 @@ namespace MaquinaDeTurin
                         dtgCinta.CurrentCell.Value = blanco;
                         cadena[cabezal] = char.Parse(blanco);
                         txtCompuesta.Text += blanco + "->";
-                        txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
+                        txtMovimientos.Text += "Se escribió el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                         txtCompuesta.Text += "I!" + simbolo + "->";
                     }
 
@@ -709,12 +709,19 @@ namespace MaquinaDeTurin
             if (cont > 0)
                 MessageBox.Show("Eliminados todos los símbolos diferentes de " + simbolo + " del lado izquierdo");
             else
-                MessageBox.Show("No se borró ningún simbolo");
+                MessageBox.Show("No se borró ningún símbolo");
         }
 
         private async void btnEliminar1SIgualDer_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cbxEliminar1SIgual.Text))
+            {
+                MessageBox.Show("Seleccione un símbolo");
+                return;
+            }
+
             string simbolo = cbxEliminar1SIgual.Text;
+            txtCompuesta.Text += "D." + simbolo + "->";
             while (cabezal < dtgCinta.Columns.Count - 1)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
@@ -723,15 +730,14 @@ namespace MaquinaDeTurin
                 {
                     cabezal++;
                     ActualizarCinta();
-                    txtCompuesta.Text += "D->";
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
                         dtgCinta.CurrentCell.Value = blanco;
                         cadena[cabezal] = char.Parse(blanco);
                         txtCompuesta.Text += blanco + "->";
-                        txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
-                        MessageBox.Show("Se elimino el primer " + simbolo + ", que se encontro en la posicion " + cabezal + " del lado Derecho");
+                        txtMovimientos.Text += "Se escribió el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
+                        MessageBox.Show("Se eliminó el primer " + simbolo + ", que se encontró en la posicion " + cabezal + " del lado Derecho");
                         return;
                     }
 
@@ -746,7 +752,13 @@ namespace MaquinaDeTurin
 
         private async void btnEliminar1SIgualIzq_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cbxEliminar1SIgual.Text))
+            {
+                MessageBox.Show("Seleccione un símbolo");
+                return;
+            }
             string simbolo = cbxEliminar1SIgual.Text;
+            txtCompuesta.Text += "I." + simbolo + "->";
             while (cabezal >= 0)
             {
                 int columnaActual = dtgCinta.CurrentCell.ColumnIndex;
@@ -755,7 +767,7 @@ namespace MaquinaDeTurin
                 {
                     cabezal--;
                     ActualizarCinta();
-                    txtCompuesta.Text += "I->";
+                    
                     await Task.Delay(500);
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
@@ -763,7 +775,7 @@ namespace MaquinaDeTurin
                         cadena[cabezal] = char.Parse(blanco);
                         txtCompuesta.Text += blanco + "->";
                         txtMovimientos.Text += "Se escribió el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
-                        MessageBox.Show("Se elimino el primer " + simbolo + ", que se encontro en la posicion " + cabezal + " del lado Izquierdo");
+                        MessageBox.Show("Se eliminó el primer " + simbolo + ", que se encontró en la posición " + cabezal + " del lado Izquierdo");
                         return;
                     }
 
@@ -798,14 +810,14 @@ namespace MaquinaDeTurin
                     ActualizarCinta();
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
-                        MessageBox.Show("Se elimino todos los simbolos del lado derecho hasta la posicion  " + cabezal + " donde se encontre el " + simbolo);
+                        MessageBox.Show("Se eliminó todos los símbolos del lado derecho hasta la posición  " + cabezal + " donde se encontró el " + simbolo);
                         return;
                     }
                     dtgCinta.CurrentCell.Value = blanco;
                     cadena[cabezal] = char.Parse(blanco);
                     txtCompuesta.Text += "D->";
                     txtCompuesta.Text += blanco + "->";
-                    txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
+                    txtMovimientos.Text += "Se escribió el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                     await Task.Delay(500);
                 }
             }
@@ -833,14 +845,14 @@ namespace MaquinaDeTurin
                     ActualizarCinta();
                     if (dtgCinta.CurrentCell.Value.ToString() == simbolo)
                     {
-                        MessageBox.Show("Se elimino todos los simbolos del lado derecho hasta la posicion  " + cabezal + " donde se encontre el " + simbolo);
+                        MessageBox.Show("Se eliminó todos los símbolos del lado derecho hasta la posición  " + cabezal + " donde se encontró el " + simbolo);
                         return;
                     }
                     dtgCinta.CurrentCell.Value = blanco;
                     cadena[cabezal]=char.Parse(blanco);
                     txtCompuesta.Text += "I->";
                     txtCompuesta.Text += blanco + "->";
-                    txtMovimientos.Text += "Se escribio el simbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
+                    txtMovimientos.Text += "Se escribió el símbolo " + blanco + " en la posición " + cabezal.ToString() + "\r\n";
                     await Task.Delay(500);
                 }
             }
@@ -871,7 +883,7 @@ namespace MaquinaDeTurin
                 {
                     if (cabezal == 0)
                     {
-                        MessageBox.Show("Ya no se puede ir a la izquierda, no se encontro", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Ya no se puede ir a la izquierda, no se encontró", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                     if (BuscarIzq(cadenainv[i]) != true)
@@ -1244,7 +1256,7 @@ namespace MaquinaDeTurin
                 }
                 cabezal--;
                 ActualizarCinta();
-                txtMovimientos.Text += "El cabezal regreso a la posición" + cabezal + " marcada con *\r\n";
+                txtMovimientos.Text += "El cabezal regresó a la posición" + cabezal + " marcada con *\r\n";
                 MessageBox.Show("El cabezal regreso a la marca *");
                 return;
             }
@@ -1259,8 +1271,8 @@ namespace MaquinaDeTurin
                 }
                 cabezal++;
                 ActualizarCinta();
-                txtMovimientos.Text += "El cabezal regreso a la posición" + cabezal + " marcada con *\r\n";
-                MessageBox.Show("El cabezal regreso a la marca *");
+                txtMovimientos.Text += "El cabezal regresó a la posición" + cabezal + " marcada con *\r\n";
+                MessageBox.Show("El cabezal regresó a la marca *");
                 return;
             }
         }

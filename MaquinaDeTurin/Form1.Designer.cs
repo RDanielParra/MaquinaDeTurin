@@ -115,11 +115,11 @@
             gbxDatosMT.Controls.Add(lblCadena);
             gbxDatosMT.Controls.Add(lblAlfabeto);
             gbxDatosMT.Controls.Add(txtAlfabeto);
-            gbxDatosMT.Location = new Point(9, 7);
-            gbxDatosMT.Margin = new Padding(2);
+            gbxDatosMT.Location = new Point(10, 9);
+            gbxDatosMT.Margin = new Padding(2, 3, 2, 3);
             gbxDatosMT.Name = "gbxDatosMT";
-            gbxDatosMT.Padding = new Padding(2);
-            gbxDatosMT.Size = new Size(300, 181);
+            gbxDatosMT.Padding = new Padding(2, 3, 2, 3);
+            gbxDatosMT.Size = new Size(343, 241);
             gbxDatosMT.TabIndex = 0;
             gbxDatosMT.TabStop = false;
             gbxDatosMT.Text = "Máquina de Turing";
@@ -128,10 +128,10 @@
             // 
             button2.BackColor = SystemColors.ActiveCaption;
             button2.Enabled = false;
-            button2.Location = new Point(4, 146);
-            button2.Margin = new Padding(2);
+            button2.Location = new Point(5, 195);
+            button2.Margin = new Padding(2, 3, 2, 3);
             button2.Name = "button2";
-            button2.Size = new Size(288, 24);
+            button2.Size = new Size(329, 32);
             button2.TabIndex = 9;
             button2.Text = "Encender Máquina de Turing";
             button2.UseVisualStyleBackColor = false;
@@ -141,19 +141,19 @@
             // 
             cbxPosicionIni.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxPosicionIni.FormattingEnabled = true;
-            cbxPosicionIni.Location = new Point(148, 121);
-            cbxPosicionIni.Margin = new Padding(2);
+            cbxPosicionIni.Location = new Point(169, 161);
+            cbxPosicionIni.Margin = new Padding(2, 3, 2, 3);
             cbxPosicionIni.Name = "cbxPosicionIni";
-            cbxPosicionIni.Size = new Size(47, 23);
+            cbxPosicionIni.Size = new Size(53, 28);
             cbxPosicionIni.TabIndex = 8;
             // 
             // lblPosIni
             // 
             lblPosIni.AutoSize = true;
-            lblPosIni.Location = new Point(4, 122);
+            lblPosIni.Location = new Point(5, 163);
             lblPosIni.Margin = new Padding(2, 0, 2, 0);
             lblPosIni.Name = "lblPosIni";
-            lblPosIni.Size = new Size(136, 15);
+            lblPosIni.Size = new Size(170, 20);
             lblPosIni.TabIndex = 7;
             lblPosIni.Text = "Posición de celda inicial:";
             // 
@@ -161,10 +161,10 @@
             // 
             btnCapturarCadena.BackColor = SystemColors.ActiveCaption;
             btnCapturarCadena.Enabled = false;
-            btnCapturarCadena.Location = new Point(67, 85);
-            btnCapturarCadena.Margin = new Padding(2);
+            btnCapturarCadena.Location = new Point(77, 113);
+            btnCapturarCadena.Margin = new Padding(2, 3, 2, 3);
             btnCapturarCadena.Name = "btnCapturarCadena";
-            btnCapturarCadena.Size = new Size(178, 25);
+            btnCapturarCadena.Size = new Size(203, 33);
             btnCapturarCadena.TabIndex = 6;
             btnCapturarCadena.Text = "Capturar Cadena";
             btnCapturarCadena.UseVisualStyleBackColor = false;
@@ -173,20 +173,20 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(176, 67);
+            label1.Location = new Point(201, 89);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(88, 15);
+            label1.Size = new Size(112, 20);
             label1.TabIndex = 5;
             label1.Text = "Space = blanco";
             // 
             // btnAlfabeto
             // 
             btnAlfabeto.BackColor = SystemColors.ActiveCaption;
-            btnAlfabeto.Location = new Point(176, 29);
-            btnAlfabeto.Margin = new Padding(2);
+            btnAlfabeto.Location = new Point(201, 39);
+            btnAlfabeto.Margin = new Padding(2, 3, 2, 3);
             btnAlfabeto.Name = "btnAlfabeto";
-            btnAlfabeto.Size = new Size(116, 24);
+            btnAlfabeto.Size = new Size(133, 32);
             btnAlfabeto.TabIndex = 3;
             btnAlfabeto.Text = "Capturar Alfabeto";
             btnAlfabeto.UseVisualStyleBackColor = false;
@@ -195,10 +195,10 @@
             // txtCadena
             // 
             txtCadena.Enabled = false;
-            txtCadena.Location = new Point(67, 63);
-            txtCadena.Margin = new Padding(2);
+            txtCadena.Location = new Point(77, 84);
+            txtCadena.Margin = new Padding(2, 3, 2, 3);
             txtCadena.Name = "txtCadena";
-            txtCadena.Size = new Size(106, 23);
+            txtCadena.Size = new Size(121, 27);
             txtCadena.TabIndex = 4;
             txtCadena.TextChanged += txtCadena_TextChanged;
             txtCadena.KeyDown += txtCadena_KeyDown;
@@ -207,29 +207,29 @@
             // lblCadena
             // 
             lblCadena.AutoSize = true;
-            lblCadena.Location = new Point(4, 67);
+            lblCadena.Location = new Point(5, 89);
             lblCadena.Margin = new Padding(2, 0, 2, 0);
             lblCadena.Name = "lblCadena";
-            lblCadena.Size = new Size(50, 15);
+            lblCadena.Size = new Size(62, 20);
             lblCadena.TabIndex = 2;
             lblCadena.Text = "Cadena:";
             // 
             // lblAlfabeto
             // 
             lblAlfabeto.AutoSize = true;
-            lblAlfabeto.Location = new Point(4, 31);
+            lblAlfabeto.Location = new Point(5, 41);
             lblAlfabeto.Margin = new Padding(2, 0, 2, 0);
             lblAlfabeto.Name = "lblAlfabeto";
-            lblAlfabeto.Size = new Size(55, 15);
+            lblAlfabeto.Size = new Size(70, 20);
             lblAlfabeto.TabIndex = 1;
             lblAlfabeto.Text = "Alfabeto:";
             // 
             // txtAlfabeto
             // 
-            txtAlfabeto.Location = new Point(67, 32);
-            txtAlfabeto.Margin = new Padding(2);
+            txtAlfabeto.Location = new Point(77, 43);
+            txtAlfabeto.Margin = new Padding(2, 3, 2, 3);
             txtAlfabeto.Name = "txtAlfabeto";
-            txtAlfabeto.Size = new Size(106, 23);
+            txtAlfabeto.Size = new Size(121, 27);
             txtAlfabeto.TabIndex = 0;
             txtAlfabeto.KeyPress += txtAlfabeto_KeyPress;
             // 
@@ -268,11 +268,11 @@
             gbxOperaciones.Controls.Add(btnBuscarIgualIzq);
             gbxOperaciones.Controls.Add(cbxBuscarSIgual);
             gbxOperaciones.Controls.Add(lblBuscarSIgual);
-            gbxOperaciones.Location = new Point(313, 7);
-            gbxOperaciones.Margin = new Padding(2);
+            gbxOperaciones.Location = new Point(358, 9);
+            gbxOperaciones.Margin = new Padding(2, 3, 2, 3);
             gbxOperaciones.Name = "gbxOperaciones";
-            gbxOperaciones.Padding = new Padding(2);
-            gbxOperaciones.Size = new Size(723, 181);
+            gbxOperaciones.Padding = new Padding(2, 3, 2, 3);
+            gbxOperaciones.Size = new Size(826, 241);
             gbxOperaciones.TabIndex = 1;
             gbxOperaciones.TabStop = false;
             gbxOperaciones.Text = "Operaciones";
@@ -281,10 +281,10 @@
             // 
             btnBorrarCadDer.BackColor = SystemColors.ActiveCaption;
             btnBorrarCadDer.Enabled = false;
-            btnBorrarCadDer.Location = new Point(615, 142);
-            btnBorrarCadDer.Margin = new Padding(2);
+            btnBorrarCadDer.Location = new Point(703, 189);
+            btnBorrarCadDer.Margin = new Padding(2, 3, 2, 3);
             btnBorrarCadDer.Name = "btnBorrarCadDer";
-            btnBorrarCadDer.Size = new Size(104, 35);
+            btnBorrarCadDer.Size = new Size(119, 47);
             btnBorrarCadDer.TabIndex = 32;
             btnBorrarCadDer.Text = "Borrar la cadena hacia la der";
             btnBorrarCadDer.UseVisualStyleBackColor = false;
@@ -294,10 +294,10 @@
             // 
             btnBorrarCadIzq.BackColor = SystemColors.ActiveCaption;
             btnBorrarCadIzq.Enabled = false;
-            btnBorrarCadIzq.Location = new Point(510, 142);
-            btnBorrarCadIzq.Margin = new Padding(2);
+            btnBorrarCadIzq.Location = new Point(583, 189);
+            btnBorrarCadIzq.Margin = new Padding(2, 3, 2, 3);
             btnBorrarCadIzq.Name = "btnBorrarCadIzq";
-            btnBorrarCadIzq.Size = new Size(104, 35);
+            btnBorrarCadIzq.Size = new Size(119, 47);
             btnBorrarCadIzq.TabIndex = 31;
             btnBorrarCadIzq.Text = "Borrar la cadena hacia la izq";
             btnBorrarCadIzq.UseVisualStyleBackColor = false;
@@ -307,10 +307,10 @@
             // 
             btnBorrarCadena.BackColor = SystemColors.ActiveCaption;
             btnBorrarCadena.Enabled = false;
-            btnBorrarCadena.Location = new Point(510, 115);
-            btnBorrarCadena.Margin = new Padding(2);
+            btnBorrarCadena.Location = new Point(583, 153);
+            btnBorrarCadena.Margin = new Padding(2, 3, 2, 3);
             btnBorrarCadena.Name = "btnBorrarCadena";
-            btnBorrarCadena.Size = new Size(209, 22);
+            btnBorrarCadena.Size = new Size(239, 29);
             btnBorrarCadena.TabIndex = 30;
             btnBorrarCadena.Text = "Borrar la cadena";
             btnBorrarCadena.UseVisualStyleBackColor = false;
@@ -320,10 +320,10 @@
             // 
             btnSobrescribir.BackColor = SystemColors.ActiveCaption;
             btnSobrescribir.Enabled = false;
-            btnSobrescribir.Location = new Point(620, 90);
-            btnSobrescribir.Margin = new Padding(2);
+            btnSobrescribir.Location = new Point(709, 120);
+            btnSobrescribir.Margin = new Padding(2, 3, 2, 3);
             btnSobrescribir.Name = "btnSobrescribir";
-            btnSobrescribir.Size = new Size(99, 20);
+            btnSobrescribir.Size = new Size(113, 27);
             btnSobrescribir.TabIndex = 29;
             btnSobrescribir.Text = "Sobrescribir";
             btnSobrescribir.UseVisualStyleBackColor = false;
@@ -333,10 +333,10 @@
             // 
             btnGuardarS.BackColor = SystemColors.ActiveCaption;
             btnGuardarS.Enabled = false;
-            btnGuardarS.Location = new Point(510, 90);
-            btnGuardarS.Margin = new Padding(2);
+            btnGuardarS.Location = new Point(583, 120);
+            btnGuardarS.Margin = new Padding(2, 3, 2, 3);
             btnGuardarS.Name = "btnGuardarS";
-            btnGuardarS.Size = new Size(104, 20);
+            btnGuardarS.Size = new Size(119, 27);
             btnGuardarS.TabIndex = 28;
             btnGuardarS.Text = "Guardar Simb.";
             btnGuardarS.UseVisualStyleBackColor = false;
@@ -346,10 +346,10 @@
             // 
             btnEscribirSDer.BackColor = SystemColors.ActiveCaption;
             btnEscribirSDer.Enabled = false;
-            btnEscribirSDer.Location = new Point(653, 56);
-            btnEscribirSDer.Margin = new Padding(2);
+            btnEscribirSDer.Location = new Point(746, 75);
+            btnEscribirSDer.Margin = new Padding(2, 3, 2, 3);
             btnEscribirSDer.Name = "btnEscribirSDer";
-            btnEscribirSDer.Size = new Size(57, 25);
+            btnEscribirSDer.Size = new Size(65, 33);
             btnEscribirSDer.TabIndex = 27;
             btnEscribirSDer.Text = "Der ->";
             btnEscribirSDer.UseVisualStyleBackColor = false;
@@ -360,10 +360,10 @@
             // 
             btnEscribirSIzq.BackColor = SystemColors.ActiveCaption;
             btnEscribirSIzq.Enabled = false;
-            btnEscribirSIzq.Location = new Point(526, 56);
-            btnEscribirSIzq.Margin = new Padding(2);
+            btnEscribirSIzq.Location = new Point(601, 75);
+            btnEscribirSIzq.Margin = new Padding(2, 3, 2, 3);
             btnEscribirSIzq.Name = "btnEscribirSIzq";
-            btnEscribirSIzq.Size = new Size(123, 25);
+            btnEscribirSIzq.Size = new Size(141, 33);
             btnEscribirSIzq.TabIndex = 26;
             btnEscribirSIzq.Text = "Escribir";
             btnEscribirSIzq.UseVisualStyleBackColor = false;
@@ -373,19 +373,19 @@
             // 
             cbxEscribirSimb.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxEscribirSimb.FormattingEnabled = true;
-            cbxEscribirSimb.Location = new Point(536, 33);
-            cbxEscribirSimb.Margin = new Padding(2);
+            cbxEscribirSimb.Location = new Point(613, 44);
+            cbxEscribirSimb.Margin = new Padding(2, 3, 2, 3);
             cbxEscribirSimb.Name = "cbxEscribirSimb";
-            cbxEscribirSimb.Size = new Size(101, 23);
+            cbxEscribirSimb.Size = new Size(115, 28);
             cbxEscribirSimb.TabIndex = 25;
             // 
             // lblEscribirSimb
             // 
             lblEscribirSimb.AutoSize = true;
-            lblEscribirSimb.Location = new Point(527, 16);
+            lblEscribirSimb.Location = new Point(602, 21);
             lblEscribirSimb.Margin = new Padding(2, 0, 2, 0);
             lblEscribirSimb.Name = "lblEscribirSimb";
-            lblEscribirSimb.Size = new Size(173, 15);
+            lblEscribirSimb.Size = new Size(219, 20);
             lblEscribirSimb.TabIndex = 24;
             lblEscribirSimb.Text = "Escribir símbolo en celda actual";
             // 
@@ -393,10 +393,10 @@
             // 
             btnEliminarHastaDer.BackColor = SystemColors.ActiveCaption;
             btnEliminarHastaDer.Enabled = false;
-            btnEliminarHastaDer.Location = new Point(427, 133);
-            btnEliminarHastaDer.Margin = new Padding(2);
+            btnEliminarHastaDer.Location = new Point(488, 177);
+            btnEliminarHastaDer.Margin = new Padding(2, 3, 2, 3);
             btnEliminarHastaDer.Name = "btnEliminarHastaDer";
-            btnEliminarHastaDer.Size = new Size(57, 28);
+            btnEliminarHastaDer.Size = new Size(65, 37);
             btnEliminarHastaDer.TabIndex = 23;
             btnEliminarHastaDer.Text = "Der ->";
             btnEliminarHastaDer.UseVisualStyleBackColor = false;
@@ -406,10 +406,10 @@
             // 
             btnEliminarHastaIzq.BackColor = SystemColors.ActiveCaption;
             btnEliminarHastaIzq.Enabled = false;
-            btnEliminarHastaIzq.Location = new Point(361, 133);
-            btnEliminarHastaIzq.Margin = new Padding(2);
+            btnEliminarHastaIzq.Location = new Point(413, 177);
+            btnEliminarHastaIzq.Margin = new Padding(2, 3, 2, 3);
             btnEliminarHastaIzq.Name = "btnEliminarHastaIzq";
-            btnEliminarHastaIzq.Size = new Size(57, 28);
+            btnEliminarHastaIzq.Size = new Size(65, 37);
             btnEliminarHastaIzq.TabIndex = 22;
             btnEliminarHastaIzq.Text = "<- Izq";
             btnEliminarHastaIzq.UseVisualStyleBackColor = false;
@@ -419,19 +419,19 @@
             // 
             cbxEliminarHasta.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxEliminarHasta.FormattingEnabled = true;
-            cbxEliminarHasta.Location = new Point(372, 110);
-            cbxEliminarHasta.Margin = new Padding(2);
+            cbxEliminarHasta.Location = new Point(425, 147);
+            cbxEliminarHasta.Margin = new Padding(2, 3, 2, 3);
             cbxEliminarHasta.Name = "cbxEliminarHasta";
-            cbxEliminarHasta.Size = new Size(101, 23);
+            cbxEliminarHasta.Size = new Size(115, 28);
             cbxEliminarHasta.TabIndex = 21;
             // 
             // lblEliminarSHasta
             // 
             lblEliminarSHasta.AutoSize = true;
-            lblEliminarSHasta.Location = new Point(361, 93);
+            lblEliminarSHasta.Location = new Point(413, 124);
             lblEliminarSHasta.Margin = new Padding(2, 0, 2, 0);
             lblEliminarSHasta.Name = "lblEliminarSHasta";
-            lblEliminarSHasta.Size = new Size(132, 15);
+            lblEliminarSHasta.Size = new Size(166, 20);
             lblEliminarSHasta.TabIndex = 20;
             lblEliminarSHasta.Text = "Eliminar símbolos hasta";
             // 
@@ -439,10 +439,10 @@
             // 
             btnEliminar1SIgualDer.BackColor = SystemColors.ActiveCaption;
             btnEliminar1SIgualDer.Enabled = false;
-            btnEliminar1SIgualDer.Location = new Point(427, 56);
-            btnEliminar1SIgualDer.Margin = new Padding(2);
+            btnEliminar1SIgualDer.Location = new Point(488, 75);
+            btnEliminar1SIgualDer.Margin = new Padding(2, 3, 2, 3);
             btnEliminar1SIgualDer.Name = "btnEliminar1SIgualDer";
-            btnEliminar1SIgualDer.Size = new Size(57, 28);
+            btnEliminar1SIgualDer.Size = new Size(65, 37);
             btnEliminar1SIgualDer.TabIndex = 19;
             btnEliminar1SIgualDer.Text = "Der ->";
             btnEliminar1SIgualDer.UseVisualStyleBackColor = false;
@@ -452,10 +452,10 @@
             // 
             btnEliminar1SIgualIzq.BackColor = SystemColors.ActiveCaption;
             btnEliminar1SIgualIzq.Enabled = false;
-            btnEliminar1SIgualIzq.Location = new Point(361, 56);
-            btnEliminar1SIgualIzq.Margin = new Padding(2);
+            btnEliminar1SIgualIzq.Location = new Point(413, 75);
+            btnEliminar1SIgualIzq.Margin = new Padding(2, 3, 2, 3);
             btnEliminar1SIgualIzq.Name = "btnEliminar1SIgualIzq";
-            btnEliminar1SIgualIzq.Size = new Size(57, 28);
+            btnEliminar1SIgualIzq.Size = new Size(65, 37);
             btnEliminar1SIgualIzq.TabIndex = 18;
             btnEliminar1SIgualIzq.Text = "<- Izq";
             btnEliminar1SIgualIzq.UseVisualStyleBackColor = false;
@@ -465,19 +465,19 @@
             // 
             cbxEliminar1SIgual.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxEliminar1SIgual.FormattingEnabled = true;
-            cbxEliminar1SIgual.Location = new Point(372, 33);
-            cbxEliminar1SIgual.Margin = new Padding(2);
+            cbxEliminar1SIgual.Location = new Point(425, 44);
+            cbxEliminar1SIgual.Margin = new Padding(2, 3, 2, 3);
             cbxEliminar1SIgual.Name = "cbxEliminar1SIgual";
-            cbxEliminar1SIgual.Size = new Size(101, 23);
+            cbxEliminar1SIgual.Size = new Size(115, 28);
             cbxEliminar1SIgual.TabIndex = 17;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(361, 16);
+            label3.Location = new Point(413, 21);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(142, 15);
+            label3.Size = new Size(180, 20);
             label3.TabIndex = 16;
             label3.Text = "Eliminar símbolo igual (1)";
             // 
@@ -485,10 +485,10 @@
             // 
             btnEliminarDifDer.BackColor = SystemColors.ActiveCaption;
             btnEliminarDifDer.Enabled = false;
-            btnEliminarDifDer.Location = new Point(246, 133);
-            btnEliminarDifDer.Margin = new Padding(2);
+            btnEliminarDifDer.Location = new Point(281, 177);
+            btnEliminarDifDer.Margin = new Padding(2, 3, 2, 3);
             btnEliminarDifDer.Name = "btnEliminarDifDer";
-            btnEliminarDifDer.Size = new Size(57, 28);
+            btnEliminarDifDer.Size = new Size(65, 37);
             btnEliminarDifDer.TabIndex = 15;
             btnEliminarDifDer.Text = "Der ->";
             btnEliminarDifDer.UseVisualStyleBackColor = false;
@@ -498,10 +498,10 @@
             // 
             btnEliminarDifIzq.BackColor = SystemColors.ActiveCaption;
             btnEliminarDifIzq.Enabled = false;
-            btnEliminarDifIzq.Location = new Point(181, 133);
-            btnEliminarDifIzq.Margin = new Padding(2);
+            btnEliminarDifIzq.Location = new Point(207, 177);
+            btnEliminarDifIzq.Margin = new Padding(2, 3, 2, 3);
             btnEliminarDifIzq.Name = "btnEliminarDifIzq";
-            btnEliminarDifIzq.Size = new Size(57, 28);
+            btnEliminarDifIzq.Size = new Size(65, 37);
             btnEliminarDifIzq.TabIndex = 14;
             btnEliminarDifIzq.Text = "<- Izq";
             btnEliminarDifIzq.UseVisualStyleBackColor = false;
@@ -511,19 +511,19 @@
             // 
             cbxEliminarSDif.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxEliminarSDif.FormattingEnabled = true;
-            cbxEliminarSDif.Location = new Point(191, 110);
-            cbxEliminarSDif.Margin = new Padding(2);
+            cbxEliminarSDif.Location = new Point(218, 147);
+            cbxEliminarSDif.Margin = new Padding(2, 3, 2, 3);
             cbxEliminarSDif.Name = "cbxEliminarSDif";
-            cbxEliminarSDif.Size = new Size(101, 23);
+            cbxEliminarSDif.Size = new Size(115, 28);
             cbxEliminarSDif.TabIndex = 13;
             // 
             // lblEliminarSDif
             // 
             lblEliminarSDif.AutoSize = true;
-            lblEliminarSDif.Location = new Point(181, 93);
+            lblEliminarSDif.Location = new Point(207, 124);
             lblEliminarSDif.Margin = new Padding(2, 0, 2, 0);
             lblEliminarSDif.Name = "lblEliminarSDif";
-            lblEliminarSDif.Size = new Size(151, 15);
+            lblEliminarSDif.Size = new Size(191, 20);
             lblEliminarSDif.TabIndex = 12;
             lblEliminarSDif.Text = "Eliminar símbolos diferente";
             // 
@@ -531,10 +531,10 @@
             // 
             btnEliminarIgualDer.BackColor = SystemColors.ActiveCaption;
             btnEliminarIgualDer.Enabled = false;
-            btnEliminarIgualDer.Location = new Point(246, 56);
-            btnEliminarIgualDer.Margin = new Padding(2);
+            btnEliminarIgualDer.Location = new Point(281, 75);
+            btnEliminarIgualDer.Margin = new Padding(2, 3, 2, 3);
             btnEliminarIgualDer.Name = "btnEliminarIgualDer";
-            btnEliminarIgualDer.Size = new Size(57, 28);
+            btnEliminarIgualDer.Size = new Size(65, 37);
             btnEliminarIgualDer.TabIndex = 11;
             btnEliminarIgualDer.Text = "Der ->";
             btnEliminarIgualDer.UseVisualStyleBackColor = false;
@@ -544,10 +544,10 @@
             // 
             btnEliminarIgualIzq.BackColor = SystemColors.ActiveCaption;
             btnEliminarIgualIzq.Enabled = false;
-            btnEliminarIgualIzq.Location = new Point(181, 56);
-            btnEliminarIgualIzq.Margin = new Padding(2);
+            btnEliminarIgualIzq.Location = new Point(207, 75);
+            btnEliminarIgualIzq.Margin = new Padding(2, 3, 2, 3);
             btnEliminarIgualIzq.Name = "btnEliminarIgualIzq";
-            btnEliminarIgualIzq.Size = new Size(57, 28);
+            btnEliminarIgualIzq.Size = new Size(65, 37);
             btnEliminarIgualIzq.TabIndex = 10;
             btnEliminarIgualIzq.Text = "<- Izq";
             btnEliminarIgualIzq.UseVisualStyleBackColor = false;
@@ -557,19 +557,19 @@
             // 
             cbxEliminarSIgual.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxEliminarSIgual.FormattingEnabled = true;
-            cbxEliminarSIgual.Location = new Point(191, 33);
-            cbxEliminarSIgual.Margin = new Padding(2);
+            cbxEliminarSIgual.Location = new Point(218, 44);
+            cbxEliminarSIgual.Margin = new Padding(2, 3, 2, 3);
             cbxEliminarSIgual.Name = "cbxEliminarSIgual";
-            cbxEliminarSIgual.Size = new Size(101, 23);
+            cbxEliminarSIgual.Size = new Size(115, 28);
             cbxEliminarSIgual.TabIndex = 9;
             // 
             // lblEliminarSIgual
             // 
             lblEliminarSIgual.AutoSize = true;
-            lblEliminarSIgual.Location = new Point(181, 16);
+            lblEliminarSIgual.Location = new Point(207, 21);
             lblEliminarSIgual.Margin = new Padding(2, 0, 2, 0);
             lblEliminarSIgual.Name = "lblEliminarSIgual";
-            lblEliminarSIgual.Size = new Size(130, 15);
+            lblEliminarSIgual.Size = new Size(164, 20);
             lblEliminarSIgual.TabIndex = 8;
             lblEliminarSIgual.Text = "Eliminar símbolos igual";
             // 
@@ -577,10 +577,10 @@
             // 
             btnBuscarDifDer.BackColor = SystemColors.ActiveCaption;
             btnBuscarDifDer.Enabled = false;
-            btnBuscarDifDer.Location = new Point(70, 133);
-            btnBuscarDifDer.Margin = new Padding(2);
+            btnBuscarDifDer.Location = new Point(80, 177);
+            btnBuscarDifDer.Margin = new Padding(2, 3, 2, 3);
             btnBuscarDifDer.Name = "btnBuscarDifDer";
-            btnBuscarDifDer.Size = new Size(57, 28);
+            btnBuscarDifDer.Size = new Size(65, 37);
             btnBuscarDifDer.TabIndex = 7;
             btnBuscarDifDer.Text = "Der ->";
             btnBuscarDifDer.UseVisualStyleBackColor = false;
@@ -590,10 +590,10 @@
             // 
             btnBuscarDifIzq.BackColor = SystemColors.ActiveCaption;
             btnBuscarDifIzq.Enabled = false;
-            btnBuscarDifIzq.Location = new Point(4, 133);
-            btnBuscarDifIzq.Margin = new Padding(2);
+            btnBuscarDifIzq.Location = new Point(5, 177);
+            btnBuscarDifIzq.Margin = new Padding(2, 3, 2, 3);
             btnBuscarDifIzq.Name = "btnBuscarDifIzq";
-            btnBuscarDifIzq.Size = new Size(57, 28);
+            btnBuscarDifIzq.Size = new Size(65, 37);
             btnBuscarDifIzq.TabIndex = 6;
             btnBuscarDifIzq.Text = "<- Izq";
             btnBuscarDifIzq.UseVisualStyleBackColor = false;
@@ -603,19 +603,19 @@
             // 
             cbxBuscarSDif.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxBuscarSDif.FormattingEnabled = true;
-            cbxBuscarSDif.Location = new Point(15, 110);
-            cbxBuscarSDif.Margin = new Padding(2);
+            cbxBuscarSDif.Location = new Point(17, 147);
+            cbxBuscarSDif.Margin = new Padding(2, 3, 2, 3);
             cbxBuscarSDif.Name = "cbxBuscarSDif";
-            cbxBuscarSDif.Size = new Size(101, 23);
+            cbxBuscarSDif.Size = new Size(115, 28);
             cbxBuscarSDif.TabIndex = 5;
             // 
             // lblBuscarSDif
             // 
             lblBuscarSDif.AutoSize = true;
-            lblBuscarSDif.Location = new Point(4, 93);
+            lblBuscarSDif.Location = new Point(5, 124);
             lblBuscarSDif.Margin = new Padding(2, 0, 2, 0);
             lblBuscarSDif.Name = "lblBuscarSDif";
-            lblBuscarSDif.Size = new Size(138, 15);
+            lblBuscarSDif.Size = new Size(174, 20);
             lblBuscarSDif.TabIndex = 4;
             lblBuscarSDif.Text = "Buscar símbolo diferente";
             // 
@@ -623,10 +623,10 @@
             // 
             btnBuscarIgualDer.BackColor = SystemColors.ActiveCaption;
             btnBuscarIgualDer.Enabled = false;
-            btnBuscarIgualDer.Location = new Point(70, 56);
-            btnBuscarIgualDer.Margin = new Padding(2);
+            btnBuscarIgualDer.Location = new Point(80, 75);
+            btnBuscarIgualDer.Margin = new Padding(2, 3, 2, 3);
             btnBuscarIgualDer.Name = "btnBuscarIgualDer";
-            btnBuscarIgualDer.Size = new Size(57, 28);
+            btnBuscarIgualDer.Size = new Size(65, 37);
             btnBuscarIgualDer.TabIndex = 3;
             btnBuscarIgualDer.Text = "Der ->";
             btnBuscarIgualDer.UseVisualStyleBackColor = false;
@@ -636,10 +636,10 @@
             // 
             btnBuscarIgualIzq.BackColor = SystemColors.ActiveCaption;
             btnBuscarIgualIzq.Enabled = false;
-            btnBuscarIgualIzq.Location = new Point(4, 56);
-            btnBuscarIgualIzq.Margin = new Padding(2);
+            btnBuscarIgualIzq.Location = new Point(5, 75);
+            btnBuscarIgualIzq.Margin = new Padding(2, 3, 2, 3);
             btnBuscarIgualIzq.Name = "btnBuscarIgualIzq";
-            btnBuscarIgualIzq.Size = new Size(57, 28);
+            btnBuscarIgualIzq.Size = new Size(65, 37);
             btnBuscarIgualIzq.TabIndex = 2;
             btnBuscarIgualIzq.Text = "<- Izq";
             btnBuscarIgualIzq.UseVisualStyleBackColor = false;
@@ -649,19 +649,19 @@
             // 
             cbxBuscarSIgual.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxBuscarSIgual.FormattingEnabled = true;
-            cbxBuscarSIgual.Location = new Point(15, 33);
-            cbxBuscarSIgual.Margin = new Padding(2);
+            cbxBuscarSIgual.Location = new Point(17, 44);
+            cbxBuscarSIgual.Margin = new Padding(2, 3, 2, 3);
             cbxBuscarSIgual.Name = "cbxBuscarSIgual";
-            cbxBuscarSIgual.Size = new Size(101, 23);
+            cbxBuscarSIgual.Size = new Size(115, 28);
             cbxBuscarSIgual.TabIndex = 1;
             // 
             // lblBuscarSIgual
             // 
             lblBuscarSIgual.AutoSize = true;
-            lblBuscarSIgual.Location = new Point(4, 16);
+            lblBuscarSIgual.Location = new Point(5, 21);
             lblBuscarSIgual.Margin = new Padding(2, 0, 2, 0);
             lblBuscarSIgual.Name = "lblBuscarSIgual";
-            lblBuscarSIgual.Size = new Size(117, 15);
+            lblBuscarSIgual.Size = new Size(147, 20);
             lblBuscarSIgual.TabIndex = 0;
             lblBuscarSIgual.Text = "Buscar símbolo igual";
             // 
@@ -676,21 +676,21 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(button3);
             groupBox1.Controls.Add(btnCopiarCad);
-            groupBox1.Location = new Point(9, 199);
-            groupBox1.Margin = new Padding(2);
+            groupBox1.Location = new Point(10, 265);
+            groupBox1.Margin = new Padding(2, 3, 2, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(2);
-            groupBox1.Size = new Size(300, 215);
+            groupBox1.Padding = new Padding(2, 3, 2, 3);
+            groupBox1.Size = new Size(343, 287);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Operaciones con Cadena";
             // 
             // btnBuscarCadena
             // 
-            btnBuscarCadena.Location = new Point(4, 170);
-            btnBuscarCadena.Margin = new Padding(2);
+            btnBuscarCadena.Location = new Point(5, 227);
+            btnBuscarCadena.Margin = new Padding(2, 3, 2, 3);
             btnBuscarCadena.Name = "btnBuscarCadena";
-            btnBuscarCadena.Size = new Size(288, 20);
+            btnBuscarCadena.Size = new Size(329, 27);
             btnBuscarCadena.TabIndex = 8;
             btnBuscarCadena.Text = "Buscar cadena";
             btnBuscarCadena.UseVisualStyleBackColor = true;
@@ -700,10 +700,10 @@
             // radBuscarRevesCadDer
             // 
             radBuscarRevesCadDer.AutoSize = true;
-            radBuscarRevesCadDer.Location = new Point(155, 132);
-            radBuscarRevesCadDer.Margin = new Padding(2);
+            radBuscarRevesCadDer.Location = new Point(177, 176);
+            radBuscarRevesCadDer.Margin = new Padding(2, 3, 2, 3);
             radBuscarRevesCadDer.Name = "radBuscarRevesCadDer";
-            radBuscarRevesCadDer.Size = new Size(125, 19);
+            radBuscarRevesCadDer.Size = new Size(156, 24);
             radBuscarRevesCadDer.TabIndex = 7;
             radBuscarRevesCadDer.Text = "Buscar al revés der.";
             radBuscarRevesCadDer.UseVisualStyleBackColor = true;
@@ -712,10 +712,10 @@
             // radBuscarRevesCadIzq
             // 
             radBuscarRevesCadIzq.AutoSize = true;
-            radBuscarRevesCadIzq.Location = new Point(4, 132);
-            radBuscarRevesCadIzq.Margin = new Padding(2);
+            radBuscarRevesCadIzq.Location = new Point(5, 176);
+            radBuscarRevesCadIzq.Margin = new Padding(2, 3, 2, 3);
             radBuscarRevesCadIzq.Name = "radBuscarRevesCadIzq";
-            radBuscarRevesCadIzq.Size = new Size(123, 19);
+            radBuscarRevesCadIzq.Size = new Size(154, 24);
             radBuscarRevesCadIzq.TabIndex = 6;
             radBuscarRevesCadIzq.Text = "Buscar al revés izq.";
             radBuscarRevesCadIzq.UseVisualStyleBackColor = true;
@@ -724,10 +724,10 @@
             // radBuscarCadDer
             // 
             radBuscarCadDer.AutoSize = true;
-            radBuscarCadDer.Location = new Point(155, 103);
-            radBuscarCadDer.Margin = new Padding(2);
+            radBuscarCadDer.Location = new Point(177, 137);
+            radBuscarCadDer.Margin = new Padding(2, 3, 2, 3);
             radBuscarCadDer.Name = "radBuscarCadDer";
-            radBuscarCadDer.Size = new Size(104, 19);
+            radBuscarCadDer.Size = new Size(130, 24);
             radBuscarCadDer.TabIndex = 5;
             radBuscarCadDer.Text = "Buscar a la der.";
             radBuscarCadDer.UseVisualStyleBackColor = true;
@@ -737,10 +737,10 @@
             // 
             radBuscarCadIzq.AutoSize = true;
             radBuscarCadIzq.Checked = true;
-            radBuscarCadIzq.Location = new Point(4, 103);
-            radBuscarCadIzq.Margin = new Padding(2);
+            radBuscarCadIzq.Location = new Point(5, 137);
+            radBuscarCadIzq.Margin = new Padding(2, 3, 2, 3);
             radBuscarCadIzq.Name = "radBuscarCadIzq";
-            radBuscarCadIzq.Size = new Size(102, 19);
+            radBuscarCadIzq.Size = new Size(128, 24);
             radBuscarCadIzq.TabIndex = 4;
             radBuscarCadIzq.TabStop = true;
             radBuscarCadIzq.Text = "Buscar a la izq.";
@@ -749,10 +749,10 @@
             // 
             // txtBuscarCadena
             // 
-            txtBuscarCadena.Location = new Point(104, 68);
-            txtBuscarCadena.Margin = new Padding(2);
+            txtBuscarCadena.Location = new Point(119, 91);
+            txtBuscarCadena.Margin = new Padding(2, 3, 2, 3);
             txtBuscarCadena.Name = "txtBuscarCadena";
-            txtBuscarCadena.Size = new Size(190, 23);
+            txtBuscarCadena.Size = new Size(217, 27);
             txtBuscarCadena.TabIndex = 3;
             txtBuscarCadena.Visible = false;
             txtBuscarCadena.KeyPress += txtBuscarCadena_KeyPress;
@@ -760,10 +760,10 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(4, 68);
+            label2.Location = new Point(5, 91);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(83, 15);
+            label2.Size = new Size(104, 20);
             label2.TabIndex = 2;
             label2.Text = "Buscar cadena";
             label2.Visible = false;
@@ -771,10 +771,10 @@
             // button3
             // 
             button3.Enabled = false;
-            button3.Location = new Point(139, 24);
-            button3.Margin = new Padding(2);
+            button3.Location = new Point(159, 32);
+            button3.Margin = new Padding(2, 3, 2, 3);
             button3.Name = "button3";
-            button3.Size = new Size(153, 20);
+            button3.Size = new Size(175, 27);
             button3.TabIndex = 1;
             button3.Text = "Copiar cadena al revés";
             button3.UseVisualStyleBackColor = true;
@@ -783,10 +783,10 @@
             // btnCopiarCad
             // 
             btnCopiarCad.Enabled = false;
-            btnCopiarCad.Location = new Point(4, 24);
-            btnCopiarCad.Margin = new Padding(2);
+            btnCopiarCad.Location = new Point(5, 32);
+            btnCopiarCad.Margin = new Padding(2, 3, 2, 3);
             btnCopiarCad.Name = "btnCopiarCad";
-            btnCopiarCad.Size = new Size(118, 20);
+            btnCopiarCad.Size = new Size(135, 27);
             btnCopiarCad.TabIndex = 0;
             btnCopiarCad.Text = "Copiar cadena";
             btnCopiarCad.UseVisualStyleBackColor = true;
@@ -797,53 +797,53 @@
             dtgCinta.AllowUserToAddRows = false;
             dtgCinta.AllowUserToDeleteRows = false;
             dtgCinta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgCinta.Location = new Point(320, 213);
-            dtgCinta.Margin = new Padding(2);
+            dtgCinta.Location = new Point(366, 284);
+            dtgCinta.Margin = new Padding(2, 3, 2, 3);
             dtgCinta.Name = "dtgCinta";
             dtgCinta.ReadOnly = true;
             dtgCinta.RowHeadersWidth = 62;
             dtgCinta.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            dtgCinta.Size = new Size(712, 69);
+            dtgCinta.Size = new Size(814, 92);
             dtgCinta.TabIndex = 3;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(320, 196);
+            label4.Location = new Point(366, 261);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(35, 15);
+            label4.Size = new Size(43, 20);
             label4.TabIndex = 4;
             label4.Text = "Cinta";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(313, 319);
+            label5.Location = new Point(358, 425);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(68, 15);
+            label5.Size = new Size(84, 20);
             label5.TabIndex = 5;
             label5.Text = "Compuesta";
             // 
             // txtCompuesta
             // 
-            txtCompuesta.Location = new Point(313, 336);
-            txtCompuesta.Margin = new Padding(2);
+            txtCompuesta.Location = new Point(358, 448);
+            txtCompuesta.Margin = new Padding(2, 3, 2, 3);
             txtCompuesta.Multiline = true;
             txtCompuesta.Name = "txtCompuesta";
             txtCompuesta.ReadOnly = true;
-            txtCompuesta.Size = new Size(713, 33);
+            txtCompuesta.Size = new Size(814, 43);
             txtCompuesta.TabIndex = 6;
             // 
             // button4
             // 
             button4.BackColor = SystemColors.ActiveCaption;
             button4.Enabled = false;
-            button4.Location = new Point(317, 286);
-            button4.Margin = new Padding(2);
+            button4.Location = new Point(362, 381);
+            button4.Margin = new Padding(2, 3, 2, 3);
             button4.Name = "button4";
-            button4.Size = new Size(186, 22);
+            button4.Size = new Size(213, 29);
             button4.TabIndex = 7;
             button4.Text = "<- Mover a la Izquierda";
             button4.UseVisualStyleBackColor = false;
@@ -853,10 +853,10 @@
             // 
             button5.BackColor = SystemColors.ActiveCaption;
             button5.Enabled = false;
-            button5.Location = new Point(504, 286);
-            button5.Margin = new Padding(2);
+            button5.Location = new Point(576, 381);
+            button5.Margin = new Padding(2, 3, 2, 3);
             button5.Name = "button5";
-            button5.Size = new Size(186, 22);
+            button5.Size = new Size(213, 29);
             button5.TabIndex = 8;
             button5.Text = "Mover a la Derecha ->";
             button5.UseVisualStyleBackColor = false;
@@ -864,22 +864,22 @@
             // 
             // txtMovimientos
             // 
-            txtMovimientos.Location = new Point(313, 388);
-            txtMovimientos.Margin = new Padding(2);
+            txtMovimientos.Location = new Point(358, 517);
+            txtMovimientos.Margin = new Padding(2, 3, 2, 3);
             txtMovimientos.Multiline = true;
             txtMovimientos.Name = "txtMovimientos";
             txtMovimientos.ReadOnly = true;
             txtMovimientos.ScrollBars = ScrollBars.Vertical;
-            txtMovimientos.Size = new Size(713, 75);
+            txtMovimientos.Size = new Size(814, 99);
             txtMovimientos.TabIndex = 10;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(313, 371);
+            label6.Location = new Point(358, 495);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(77, 15);
+            label6.Size = new Size(95, 20);
             label6.TabIndex = 9;
             label6.Text = "Movimientos";
             // 
@@ -887,10 +887,10 @@
             // 
             btnMarcar.BackColor = SystemColors.ActiveCaption;
             btnMarcar.Enabled = false;
-            btnMarcar.Location = new Point(707, 286);
-            btnMarcar.Margin = new Padding(2);
+            btnMarcar.Location = new Point(808, 381);
+            btnMarcar.Margin = new Padding(2, 3, 2, 3);
             btnMarcar.Name = "btnMarcar";
-            btnMarcar.Size = new Size(79, 20);
+            btnMarcar.Size = new Size(90, 27);
             btnMarcar.TabIndex = 11;
             btnMarcar.Text = "Marcar";
             btnMarcar.UseVisualStyleBackColor = false;
@@ -900,10 +900,10 @@
             // 
             btnVolverAMarca.BackColor = SystemColors.ActiveCaption;
             btnVolverAMarca.Enabled = false;
-            btnVolverAMarca.Location = new Point(804, 287);
-            btnVolverAMarca.Margin = new Padding(2);
+            btnVolverAMarca.Location = new Point(919, 383);
+            btnVolverAMarca.Margin = new Padding(2, 3, 2, 3);
             btnVolverAMarca.Name = "btnVolverAMarca";
-            btnVolverAMarca.Size = new Size(100, 20);
+            btnVolverAMarca.Size = new Size(167, 27);
             btnVolverAMarca.TabIndex = 12;
             btnVolverAMarca.Text = "Volver a marca";
             btnVolverAMarca.UseVisualStyleBackColor = false;
@@ -913,10 +913,10 @@
             // 
             btnDesmarcar.BackColor = SystemColors.ActiveCaption;
             btnDesmarcar.Enabled = false;
-            btnDesmarcar.Location = new Point(918, 288);
-            btnDesmarcar.Margin = new Padding(2);
+            btnDesmarcar.Location = new Point(1090, 381);
+            btnDesmarcar.Margin = new Padding(2, 3, 2, 3);
             btnDesmarcar.Name = "btnDesmarcar";
-            btnDesmarcar.Size = new Size(79, 20);
+            btnDesmarcar.Size = new Size(90, 27);
             btnDesmarcar.TabIndex = 13;
             btnDesmarcar.Text = "Desmarcar";
             btnDesmarcar.UseVisualStyleBackColor = false;
@@ -926,10 +926,10 @@
             // 
             btnEliminarHastaMarca.BackColor = SystemColors.ActiveCaption;
             btnEliminarHastaMarca.Enabled = false;
-            btnEliminarHastaMarca.Location = new Point(754, 309);
-            btnEliminarHastaMarca.Margin = new Padding(2);
+            btnEliminarHastaMarca.Location = new Point(687, 411);
+            btnEliminarHastaMarca.Margin = new Padding(2, 3, 2, 3);
             btnEliminarHastaMarca.Name = "btnEliminarHastaMarca";
-            btnEliminarHastaMarca.Size = new Size(196, 23);
+            btnEliminarHastaMarca.Size = new Size(224, 31);
             btnEliminarHastaMarca.TabIndex = 14;
             btnEliminarHastaMarca.Text = "Eliminar hasta llegar a marca";
             btnEliminarHastaMarca.UseVisualStyleBackColor = false;
@@ -938,9 +938,9 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1054, 475);
+            ClientSize = new Size(1205, 633);
             Controls.Add(btnEliminarHastaMarca);
             Controls.Add(btnDesmarcar);
             Controls.Add(btnVolverAMarca);
@@ -956,7 +956,7 @@
             Controls.Add(groupBox1);
             Controls.Add(gbxOperaciones);
             Controls.Add(gbxDatosMT);
-            Margin = new Padding(2);
+            Margin = new Padding(2, 3, 2, 3);
             Name = "Form1";
             ShowIcon = false;
             Text = "Simulador de Máquina de Turing";

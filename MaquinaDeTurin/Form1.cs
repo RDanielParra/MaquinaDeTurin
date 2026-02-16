@@ -29,6 +29,22 @@ namespace MaquinaDeTurin
                 dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
                 dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
                 cabezal--;
+                direccion = -1;
+                if (marcado)
+                {
+                    if (cabezal < imarca)
+                    {
+                        direccion = -1;
+                    }
+                    else if (cabezal > imarca)
+                    {
+                        direccion = 1;
+                    }
+                    else if (cabezal == imarca)
+                    {
+                        direccion = 0;
+                    }
+                }
             }
             else
             {
@@ -48,6 +64,22 @@ namespace MaquinaDeTurin
                 dtgCinta.CurrentCell.Style.BackColor = Color.Yellow;
                 dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
                 cabezal++;
+                direccion = 1;
+                if (marcado)
+                {
+                    if (cabezal < imarca)
+                    {
+                        direccion = -1;
+                    }
+                    else if (cabezal > imarca)
+                    {
+                        direccion = 1;
+                    }
+                    else if (cabezal == imarca)
+                    {
+                        direccion = 0;
+                    }
+                }
             }
             else
             {
@@ -77,6 +109,7 @@ namespace MaquinaDeTurin
                     dtgCinta.CurrentCell.Style.SelectionBackColor = Color.Orange;
                 }
             }
+
         }
 
         public Form1()
@@ -129,6 +162,11 @@ namespace MaquinaDeTurin
 
         private void btnAlfabeto_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtAlfabeto.Text))
+            {
+                MessageBox.Show("Escriba el alfabeto");
+                return;
+            }
             string alfabetoCadena = txtAlfabeto.Text;
             char[] alfabetoChar = alfabetoCadena.ToCharArray();
             alfabeto = alfabetoChar.Select(c => (int)c).ToArray();
@@ -315,6 +353,21 @@ namespace MaquinaDeTurin
                 MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (marcado)
+            {
+                if (cabezal < imarca)
+                {
+                    direccion = -1;
+                }
+                else if (cabezal > imarca)
+                {
+                    direccion = 1;
+                }
+                else if (cabezal == imarca)
+                {
+                    direccion = 0;
+                }
+            }
             if (cabezal == 0)
             {
                 MessageBox.Show("Ya no se puede ir a la izquierda, Terminación Anormal", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -368,6 +421,21 @@ namespace MaquinaDeTurin
                 MessageBox.Show("Seleccione un símbolo", "Símbolo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (marcado)
+            {
+                if (cabezal < imarca)
+                {
+                    direccion = -1;
+                }
+                else if (cabezal > imarca)
+                {
+                    direccion = 1;
+                }
+                else if (cabezal == imarca)
+                {
+                    direccion = 0;
+                }
+            }
             string compuesta = "D" + subindice + cbxBuscarSIgual.Text.ToString() + "->";
             if (cabezal == cadena.Length - 1)
             {
@@ -398,7 +466,7 @@ namespace MaquinaDeTurin
                     return;
                 }
             }
-            MessageBox.Show("El símbolo no se encontró a la derecha. Problema de la parada", "Cinta");
+            //MessageBox.Show("El símbolo no se encontró a la derecha. Problema de la parada", "Cinta");
         }
 
         private async void btnBuscarDifIzq_Click(object sender, EventArgs e)
@@ -969,8 +1037,6 @@ namespace MaquinaDeTurin
 
             dtgCinta.Columns.Clear();
             dtgCinta.Rows.Clear();
-            txtCompuesta.Clear();
-            txtMovimientos.Clear();
 
             for (int i = 0; i < cadena.Length; i++)
             {
@@ -983,7 +1049,6 @@ namespace MaquinaDeTurin
 
             if (cbxPosicionIni.SelectedItem != null)
             {
-                cabezal = int.Parse(cbxPosicionIni.SelectedItem.ToString());
 
                 dtgCinta.Focus();
 
@@ -1073,7 +1138,7 @@ namespace MaquinaDeTurin
         {
             simbguardado = dtgCinta.CurrentCell.Value.ToString();
             string compuesta = simbguardado + "->}σ->";
-            txtCompuesta.Text = compuesta;
+            txtCompuesta.Text += compuesta;
         }
 
         private void btnSobrescribir_Click(object sender, EventArgs e)
@@ -1228,6 +1293,7 @@ namespace MaquinaDeTurin
             inicial = cadena[cabezal];
             dtgCinta.CurrentCell.Value = '*';
             imarca = cabezal;
+            cadena[cabezal] = '*';
             txtCompuesta.Text += "*->";
             txtMovimientos.Text += "Se marcó la cinta con * en la posición" + cabezal + "\r\n";
             marcado = true;
@@ -1286,6 +1352,9 @@ namespace MaquinaDeTurin
                     txtCompuesta.Text += cadena[cabezal] + "->";
                     txtMovimientos.Text += "Se desmarcó la cinta y se escribió " + cadena[cabezal];
                     MessageBox.Show("Cinta desmarcada");
+                    cadena[cabezal] = inicial;
+                    ActualizarCinta();
+                    dtgCinta.CurrentCell.Value= cadena[cabezal].ToString();
                     imarca = 0;
                     marcado = false;
                     btnMarcar.Enabled = true;

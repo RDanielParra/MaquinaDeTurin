@@ -451,7 +451,6 @@ namespace MaquinaDeTurin
                     MessageBox.Show("Problema de la parada", "Cinta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
             }
 
             while (cabezal < dtgCinta.Columns.Count - 1)
@@ -464,6 +463,16 @@ namespace MaquinaDeTurin
                     txtCompuesta.Text += compuesta;
                     txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + cabezal.ToString() + "\r\n";
                     return;
+                }
+                if (cabezal == cadena.Length - 1)
+                {
+                    if (cbxBuscarSIgual.Text == "Δ")
+                    {
+                        moverDerecha();
+                        txtCompuesta.Text += compuesta;
+                        txtMovimientos.Text += "Se encontró " + cbxBuscarSIgual.Text.ToString() + " en la posición " + (int.Parse(cabezal.ToString()) + 1) + "\r\n";
+                        return;
+                    }
                 }
             }
             //MessageBox.Show("El símbolo no se encontró a la derecha. Problema de la parada", "Cinta");
@@ -1349,7 +1358,7 @@ namespace MaquinaDeTurin
                 if (dtgCinta.CurrentCell.Value.ToString() == "*")
                 {
                     dtgCinta.CurrentCell.Value = cadena[cabezal].ToString();
-                    txtCompuesta.Text += cadena[cabezal] + "->";
+                    txtCompuesta.Text += inicial + "->";
                     txtMovimientos.Text += "Se desmarcó la cinta y se escribió " + cadena[cabezal];
                     MessageBox.Show("Cinta desmarcada");
                     cadena[cabezal] = inicial;

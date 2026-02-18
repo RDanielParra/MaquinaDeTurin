@@ -281,10 +281,10 @@
             // 
             btnBorrarCadDer.BackColor = SystemColors.ActiveCaption;
             btnBorrarCadDer.Enabled = false;
-            btnBorrarCadDer.Location = new Point(703, 189);
+            btnBorrarCadDer.Location = new Point(692, 189);
             btnBorrarCadDer.Margin = new Padding(2, 3, 2, 3);
             btnBorrarCadDer.Name = "btnBorrarCadDer";
-            btnBorrarCadDer.Size = new Size(119, 47);
+            btnBorrarCadDer.Size = new Size(130, 52);
             btnBorrarCadDer.TabIndex = 32;
             btnBorrarCadDer.Text = "Borrar la cadena hacia la der";
             btnBorrarCadDer.UseVisualStyleBackColor = false;
@@ -294,10 +294,10 @@
             // 
             btnBorrarCadIzq.BackColor = SystemColors.ActiveCaption;
             btnBorrarCadIzq.Enabled = false;
-            btnBorrarCadIzq.Location = new Point(583, 189);
+            btnBorrarCadIzq.Location = new Point(554, 189);
             btnBorrarCadIzq.Margin = new Padding(2, 3, 2, 3);
             btnBorrarCadIzq.Name = "btnBorrarCadIzq";
-            btnBorrarCadIzq.Size = new Size(119, 47);
+            btnBorrarCadIzq.Size = new Size(141, 52);
             btnBorrarCadIzq.TabIndex = 31;
             btnBorrarCadIzq.Text = "Borrar la cadena hacia la izq";
             btnBorrarCadIzq.UseVisualStyleBackColor = false;
